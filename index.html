@@ -264,38 +264,72 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   .name .row span{transform:none}
 }
 
-/* PRINT — a clean light one-pager */
+.print-only{display:none}
+
+/* PRINT — light pages in the brand colours, with a dark hero band like the web page */
 @media print{
-  @page{margin:14mm}
-  :root,:root[data-theme]{--pillbg:#fff;--bg:#fff;--bg2:#fff;--card:#fff;--line:#ddd;--line2:#ccc;--ink:#111;--body:#222;--mute:#444;--dim:#777;--blue:#1f6fd6;--green:#0b9a68;--sky:#0284c7;--teal:#0d9488}
-  body{background:#fff;font-size:11pt}
+  @page{margin:12mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  :root,:root[data-theme]{--pillbg:#fff;--bg:#fff;--bg2:#fff;--card:#fff;--line:#dfe6f0;--line2:#c8d3e3;--ink:#0f172a;--body:#334155;--mute:#4b5a70;--dim:#7b889c;--blue:#1f6fd6;--green:#0b9a68;--sky:#0284c7;--teal:#0d9488;--onaccent:#fff}
+  body{background:#fff;font-size:10.5pt}
   nav,.ctrl,#progress,#glow,#sky,.scroll,.marquee,#values .sky,.cta,footer,#toast,#route,.legs{display:none!important}
-  section{padding:14px 0;page-break-inside:avoid}
-  #hero{min-height:0}
-  .portrait{animation:none;width:90px;height:90px;margin-bottom:12px}.portrait>div{animation:none}
-  .name{font-size:32pt}
-  .tag{font-size:13pt!important}
-  .name .row span,.tag,.hero-meta,.pass,.stamp{opacity:1!important;transform:none!important;animation:none!important}
-  h2{font-size:18pt;margin-bottom:12px}
-  .eyebrow{margin-bottom:6px}
-  #about .big{font-size:13pt}
+  .print-only{display:block!important}
+  section{padding:10px 0}
+  .wrap{padding:0}
+  h2,.eyebrow{break-after:avoid}
+
+  #hero{color:#eef1f6;min-height:0;display:block;border-radius:14px;padding:22px 26px;margin-bottom:8px;background:radial-gradient(ellipse at 85% 120%,#10203a,#07090f 65%);
+    --ink:#eef1f6;--mute:#8b95a7;--blue:#4da3ff;--green:#3ee6a0;--sky:#7dd3fc;--line:#1e2633;--pillbg:#111722;--bg2:#0d1119}
+  .hero-in{overflow:visible}
+  .portrait{animation:none;width:84px;height:84px;margin-bottom:10px}.portrait>div{animation:none}
+  .name{font-size:34pt}
+  .tag{font-size:13pt!important;margin-top:12px}
+  #rot{border-right:0}
+  .hero-meta{margin-top:14px}
+  .print-qr{display:flex!important;position:absolute;top:22px;right:26px;align-items:center;gap:12px;font-family:var(--mono);font-size:8pt;color:#8b95a7;text-align:right}
+  .print-qr b{color:#eef1f6;font-weight:600}
+  .print-qr .qr{width:86px;height:86px;border-radius:6px}
+  .name .row span,.tag,.hero-meta,.pass,.stamp,.step{opacity:1!important;transform:none!important;animation:none!important}
+
+  h2{font-size:17pt;margin-bottom:10px}
+  .eyebrow{margin-bottom:4px}
+  #about .big{font-size:12.5pt}
   #about .big .w{opacity:1}
-  .stats{margin-top:16px}
-  .stat{padding:10px}.stat b{font-size:20pt}
+  .stats{margin-top:12px;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:10px 12px}.stat b{font-size:20pt}.stat span{font-size:8.5pt}
+
   .journey{padding-left:0}
-  .pass{margin-bottom:12px;page-break-inside:avoid}.pass .wm{display:none}
-  .pass .main{padding:14px}
-  .pass li{font-size:10pt}
-  .route-code b{font-size:20pt}
-  .passport{grid-template-columns:repeat(4,1fr)}
-  .stamp{color:#111!important;padding:8px}
-  .stamp b{font-size:10pt}
-  .board{background:#fff;border-color:#ddd}
+  .pass{margin-bottom:10px;break-inside:avoid;border-left:4px solid var(--blue)}
+  .pass:first-of-type{border-left-color:var(--green)}
+  .pass .wm{font-size:90px;opacity:.08}
+  .pass .main{padding:12px 16px}
+  .pass h3{font-size:14pt}
+  .pass li{font-size:9.5pt;margin:4px 0}
+  .route-code{margin-bottom:8px}.route-code b{font-size:18pt}
+  .meta{margin-top:10px;padding-top:8px}
+
   .how{grid-template-columns:repeat(4,1fr);gap:8px;padding-top:0}.how-line,.step::before{display:none}
-  .step{opacity:1!important;transform:none!important;padding:10px}.step .num{font-size:18pt}.step h3{font-size:12pt}.step p,.step .ex{font-size:9pt}
-  .print-qr{display:flex!important;position:absolute;top:0;right:24px;align-items:center;gap:10px;font-family:var(--mono);font-size:8pt;color:#444;text-align:right}
-  .print-qr .qr{width:84px;height:84px}
-  .flap i{background:#fff;color:#111;border:1px solid #ccc}
+  .step{padding:10px;border-top:3px solid var(--blue);break-inside:avoid}.step:nth-of-type(even){border-top-color:var(--green)}
+  .step .num{font-size:18pt}.step h3{font-size:11.5pt;margin:4px 0}.step p,.step .ex{font-size:8.5pt}
+
+  .kit{grid-template-columns:1fr 1fr;gap:10px}.box{padding:14px}.chip{padding:4px 10px;font-size:9pt}
+  .tools-line{grid-column:1/-1;font-size:9.5pt;color:var(--body)}
+  .tools-line b,.contact-line b{color:var(--blue)}
+
+  .passport{grid-template-columns:repeat(4,1fr);gap:10px}
+  .stamp{padding:8px;break-inside:avoid}
+  .stamp b{font-size:9.5pt}.stamp em{font-size:11pt}.stamp .yr{font-size:13pt}
+  .langs{margin-top:12px}.lang{padding:10px 16px}
+
+  #printValues span{display:inline-block;margin:0 6px 6px 0;padding:4px 12px;border-radius:999px;border:1px solid var(--line2);color:var(--blue);font-size:10pt}
+  #printValues span:nth-child(even){color:var(--green)}
+  .interests{font-size:10pt;margin-top:8px}
+
+  .board{break-inside:avoid;padding:16px}
+  .board .head,.brow{grid-template-columns:70px 1fr 110px}
+  .board .head span,.brow .t{display:block!important}
+  #contact h2{margin-bottom:8px}
+  .contact-line{margin-top:12px;font-size:11pt;color:var(--ink)}
 }
 </style>
 </head>
@@ -409,17 +443,17 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   </div>
 </section>
 
-<!-- HOW I WORK — example content; replace the "In practice" lines with real ones -->
+<!-- HOW I WORK -->
 <section id="how">
   <div class="wrap">
     <div class="eyebrow" data-i18n="e7">03 — How I work</div>
     <h2 data-i18n="h2f">From <em>fog</em> to launch.</h2>
     <div class="how" id="howGrid">
       <div class="how-line" aria-hidden="true"><i id="howFill"></i></div>
-      <article class="step" data-i18n="hw1"><span class="num">01</span><h3>Discover</h3><p>Listen before building. I map who is affected, what they need, and what hurts today.</p><div class="ex"><span>In practice</span>Stakeholder interviews and a short workshop, so every voice is heard before requirements are written.</div></article>
-      <article class="step" data-i18n="hw2"><span class="num">02</span><h3>Frame</h3><p>Turn the fog into a clear problem and an executable scope, with the trade-offs said out loud.</p><div class="ex"><span>In practice</span>A one-page problem statement, user flows in FigJam, and a decision log that records why.</div></article>
-      <article class="step" data-i18n="hw3"><span class="num">03</span><h3>Prototype</h3><p>Make it visible early. A clickable prototype answers more questions than a long document.</p><div class="ex"><span>In practice</span>A Figma prototype tested with real users, while a mistake is still cheap to fix.</div></article>
-      <article class="step" data-i18n="hw4"><span class="num">04</span><h3>Deliver</h3><p>A steady rhythm, clear priorities, and no surprises at release.</p><div class="ex"><span>In practice</span>Jira and Confluence for traceable delivery, regular status updates, and a clean handover.</div></article>
+      <article class="step" data-i18n="hw1"><span class="num">01</span><h3>Discover</h3><p>Understand the problem before defining the solution: users, stakeholders, constraints and business goals.</p><div class="ex"><span>In practice</span>Stakeholder interviews and user research, consolidated into personas, a pain-point map and agreed success criteria.</div></article>
+      <article class="step" data-i18n="hw2"><span class="num">02</span><h3>Frame</h3><p>Translate insights into a prioritised, executable scope with explicit trade-offs and measurable outcomes.</p><div class="ex"><span>In practice</span>Problem statements, user journeys and a prioritised backlog (MoSCoW, impact vs. effort), with decisions and rationale recorded in Confluence.</div></article>
+      <article class="step" data-i18n="hw3"><span class="num">03</span><h3>Prototype</h3><p>Validate assumptions early and cheaply, with real users, before engineering capacity is committed.</p><div class="ex"><span>In practice</span>Interactive Figma prototypes and usability sessions with end users; feedback is built into the specification before development starts.</div></article>
+      <article class="step" data-i18n="hw4"><span class="num">04</span><h3>Deliver</h3><p>Predictable delivery through clear priorities, transparent progress and disciplined handovers.</p><div class="ex"><span>In practice</span>Agile delivery in Jira, release planning with engineering, regular stakeholder reporting and structured documentation for support and operations.</div></article>
     </div>
   </div>
 </section>
@@ -439,6 +473,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
         <span class="chip" data-i18n="c10">Creative problem solving</span><span class="chip" data-i18n="c11">Analytical thinking</span><span class="chip" data-i18n="c12">Communication &amp; leadership</span>
         <span class="chip" data-i18n="c13">Documentation discipline</span><span class="chip" data-i18n="c14">Time management</span><span class="chip" data-i18n="c15">Calm in turbulence</span>
       </div></div>
+      <p class="print-only tools-line"><b data-i18n="toolsT">Tools:</b> Jira · Confluence · Figma · FigJam · Miro · Monday · MS 365 · Adobe · Lucid · Claude Code</p>
       <div class="marquee" aria-label="Tools: Jira, Confluence, Figma, FigJam, Miro, Monday, MS 365, Adobe, Lucid, Claude Code">
         <div><span>Jira</span><span>Confluence</span><span>Figma</span><span>FigJam</span><span>Miro</span><span>Monday</span><span>MS 365</span><span>Adobe</span><span>Lucid</span><span>Claude Code</span>
              <span>Jira</span><span>Confluence</span><span>Figma</span><span>FigJam</span><span>Miro</span><span>Monday</span><span>MS 365</span><span>Adobe</span><span>Lucid</span><span>Claude Code</span></div>
@@ -471,6 +506,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
     <div class="eyebrow" data-i18n="e5">06 — Values</div>
     <h2 data-i18n="h2d">The stars I <em>navigate</em> by.</h2>
     <div class="sky" id="vsky"><canvas id="cons" aria-hidden="true"></canvas></div>
+    <p class="print-only" id="printValues"></p>
     <p class="interests" data-i18n="int"><b>Curious about:</b> people, psychology, AI, history, cultures, travel, nature, consciousness, technology, patterns, systems, science…</p>
   </div>
 </section>
@@ -487,6 +523,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
       <div class="brow"><span class="t">2017</span><div class="flap"></div><span class="status" data-i18n="bs3">DEPARTED</span></div>
       <div class="brow"><span class="t">2014</span><div class="flap"></div><span class="status" data-i18n="bs3">DEPARTED</span></div>
     </div>
+    <p class="print-only contact-line"><b>✉</b> gregor.skok.mail@gmail.com &nbsp;·&nbsp; <b>in</b> linkedin.com/in/gregor-skok-9502214b</p>
     <div class="cta">
       <a class="btn primary" href="mailto:gregor.skok.mail@gmail.com">✉ gregor.skok.mail@gmail.com</a>
       <button class="btn" id="copy" data-i18n="copy">Copy email</button>
@@ -549,12 +586,12 @@ const SL = {
   int: '<b>Zanima me:</b> ljudje, psihologija, UI, zgodovina, kulture, potovanja, narava, zavest, tehnologija, vzorci, sistemi, znanost …',
   e6: '07 — Kontakt', h2e: 'Naslednji <em>odhod</em>?',
   bh1: 'ČAS', bh2: 'DESTINACIJA', bnext: 'NASL.', bs1: 'VKRCANJE', bs2: 'V LETU', bs3: 'ODLETELO',
-  nav6: 'Kako delam', qr1: 'Interaktivna različica',
+  nav6: 'Kako delam', toolsT: 'Orodja:', qr1: 'Interaktivna različica',
   e7: '03 — Kako delam', h2f: 'Od <em>megle</em> do izstrelitve.',
-  hw1: '<span class="num">01</span><h3>Odkrij</h3><p>Najprej poslušam. Ugotovim, koga zadeva, kaj potrebuje in kaj ga danes boli.</p><div class="ex"><span>V praksi</span>Pogovori z deležniki in kratka delavnica, da je vsak glas slišan, preden nastanejo zahteve.</div>',
-  hw2: '<span class="num">02</span><h3>Uokviri</h3><p>Meglo spremenim v jasen problem in izvedljiv obseg, s kompromisi, izrečenimi na glas.</p><div class="ex"><span>V praksi</span>Opis problema na eni strani, uporabniški tokovi v FigJamu in dnevnik odločitev, ki beleži zakaj.</div>',
-  hw3: '<span class="num">03</span><h3>Prototipiraj</h3><p>Zgodaj naredim vidno. Klikljiv prototip odgovori na več vprašanj kot dolg dokument.</p><div class="ex"><span>V praksi</span>Prototip v Figmi, preizkušen z resničnimi uporabniki, dokler je napako še poceni popraviti.</div>',
-  hw4: '<span class="num">04</span><h3>Izvedi</h3><p>Enakomeren ritem, jasne prioritete in brez presenečenj ob izdaji.</p><div class="ex"><span>V praksi</span>Jira in Confluence za sledljivo izvedbo, redna poročila o stanju in čista predaja.</div>',
+  hw1: '<span class="num">01</span><h3>Odkrij</h3><p>Najprej razumem problem: uporabnike, deležnike, omejitve in poslovne cilje.</p><div class="ex"><span>V praksi</span>Intervjuji z deležniki in raziskave uporabnikov, združeni v persone, zemljevid težav in dogovorjena merila uspeha.</div>',
+  hw2: '<span class="num">02</span><h3>Uokviri</h3><p>Spoznanja prevedem v prioritiziran, izvedljiv obseg z jasnimi kompromisi in merljivimi cilji.</p><div class="ex"><span>V praksi</span>Opredelitev problema, uporabniške poti in prioritiziran backlog (MoSCoW, učinek in napor), z odločitvami in utemeljitvami v Confluencu.</div>',
+  hw3: '<span class="num">03</span><h3>Prototipiraj</h3><p>Predpostavke preverim zgodaj in poceni, z resničnimi uporabniki, preden vložimo razvojni čas.</p><div class="ex"><span>V praksi</span>Interaktivni prototipi v Figmi in testiranja uporabnosti s končnimi uporabniki; povratne informacije vključim v specifikacijo pred začetkom razvoja.</div>',
+  hw4: '<span class="num">04</span><h3>Izvedi</h3><p>Predvidljiva izvedba z jasnimi prioritetami, preglednim napredkom in urejenimi predajami.</p><div class="ex"><span>V praksi</span>Agilna izvedba v Jiri, načrtovanje izdaj z razvojno ekipo, redno poročanje deležnikom in strukturirana dokumentacija za podporo in operativo.</div>',
   copy: 'Kopiraj e-pošto', pdf: '↓ Shrani kot PDF', egg: 'psst — vtipkaj <kbd>launch</kbd>',
 };
 const TXT = {
@@ -723,7 +760,7 @@ if (!RM) $$('.chip').forEach(ch => {
   const P = [[.5, .2], [.2, .3], [.8, .28], [.66, .5], [.32, .55], [.1, .72], [.5, .8], [.82, .76], [.9, .5], [.18, .48]];
   const links = [[0, 1], [0, 2], [1, 9], [9, 4], [4, 0], [2, 3], [3, 8], [8, 7], [7, 6], [6, 5], [5, 9], [4, 6], [3, 4]];
   const els = P.map(([px, py]) => { const s = document.createElement('span'); s.className = 'star'; s.style.left = px * 100 + '%'; s.style.top = py * 100 + '%'; sky.append(s); return s; });
-  const label = () => els.forEach((e, i) => e.textContent = T().values[i]); label(); onLang.push(label);
+  const label = () => { els.forEach((e, i) => e.textContent = T().values[i]); $('#printValues').innerHTML = T().values.map(v => '<span>' + v + '</span>').join(''); }; label(); onLang.push(label);
   let hover = -1, reveal = 0;
   els.forEach((e, i) => { e.addEventListener('pointerenter', () => hover = i); e.addEventListener('pointerleave', () => hover = -1); });
   new IntersectionObserver(es => { if (es[0].isIntersecting) { const t0 = performance.now(); (function f(t) { reveal = Math.min(1, (t - t0) / (RM ? 1 : 2200)); if (reveal < 1) requestAnimationFrame(f); })(t0); } }, { threshold: .4 }).observe(sky);
