@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gregor Skok — Product Creator</title>
+<meta name="description" content="Gregor Skok — Product Creator. From business aviation to luxury fleets to guest-experience software for hotels and cruise ships.">
+<meta name="theme-color" content="#07090f">
+<!-- Sharing preview (LinkedIn, Slack, WhatsApp). og:image and og:url must be absolute. -->
+<link rel="canonical" href="https://gregor2earth.github.io/">
+<meta property="og:url" content="https://gregor2earth.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Gregor Skok — Product Creator">
+<meta property="og:description" content="I turn ambiguous needs into products people love. Aviation → mobility → hotels & cruise ships.">
+<meta property="og:image" content="https://gregor2earth.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090f'/%3E%3Ctext x='32' y='44' font-family='Georgia' font-style='italic' font-size='34' text-anchor='middle' fill='%234da3ff'%3EGS%3C/text%3E%3C/svg%3E">
+<script>
+  /* theme + language before first paint, so there is no flash */
+  /* ?lang=sl and ?theme=light win, so a link can open a chosen version */
+  (() => {
+    const q = new URLSearchParams(location.search), get = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+    const t = q.get('theme') || get('cv-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    const l = q.get('lang') || get('cv-lang') || ((navigator.language || '').toLowerCase().startsWith('sl') ? 'sl' : 'en');
+    document.documentElement.lang = l === 'sl' ? 'sl' : 'en';
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f; --bg2:#0d1119; --card:#111722; --line:#1e2633; --line2:#2d3a4f;
+  --ink:#eef1f6; --body:#c3cad6; --mute:#8b95a7; --dim:#566074;
+  --blue:#4da3ff; --green:#3ee6a0; --sky:#7dd3fc; --teal:#2dd4bf; --onaccent:#000;
+  --navbg:rgba(13,17,25,.7); --pillbg:rgba(17,23,34,.6); --skyglow:#121a2a;
+  --star:238,241,246; --link-a:.12;
+  --radius:18px;
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:"Libre Franklin",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:dark;
+}
+:root[data-theme="light"]{
+  --bg:#f5f7fb; --bg2:#ffffff; --card:#ffffff; --line:#e1e7f0; --line2:#c5d0e0;
+  --ink:#0f172a; --body:#334155; --mute:#4b5a70; --dim:#8a97ab;
+  --blue:#1f6fd6; --green:#0b9a68; --sky:#0284c7; --teal:#0d9488; --onaccent:#fff;
+  --navbg:rgba(255,255,255,.78); --pillbg:rgba(255,255,255,.75); --skyglow:#dfe9f8;
+  --star:30,41,59; --link-a:.28;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#f5f7fb; --bg2:#ffffff; --card:#ffffff; --line:#e1e7f0; --line2:#c5d0e0;
+    --ink:#0f172a; --body:#334155; --mute:#4b5a70; --dim:#8a97ab;
+    --blue:#1f6fd6; --green:#0b9a68; --sky:#0284c7; --teal:#0d9488; --onaccent:#fff;
+    --navbg:rgba(255,255,255,.78); --pillbg:rgba(255,255,255,.75); --skyglow:#dfe9f8;
+    --star:30,41,59; --link-a:.28;
+    color-scheme:light;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s}
+a{color:inherit}
+::selection{background:var(--blue);color:var(--onaccent)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+section{position:relative;padding:120px 0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--blue)}
+h2{font-size:clamp(36px,5.5vw,68px);line-height:1.05;font-weight:600;letter-spacing:-.03em;margin-bottom:56px}
+h2 em,.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+
+/* progress bar + cursor glow */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--green),var(--blue));z-index:50}
+#glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(77,163,255,.07),transparent 60%);transform:translate(-50%,-50%);left:-999px;top:-999px}
+
+/* nav + controls */
+nav,.ctrl{position:fixed;top:18px;z-index:40;display:flex;gap:4px;padding:6px;border:1px solid var(--line);background:var(--navbg);backdrop-filter:blur(14px);border-radius:999px}
+nav{left:50%;transform:translateX(-50%)}
+.ctrl{right:18px;z-index:45}
+nav a,.ctrl button{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--mute);padding:8px 14px;border-radius:999px;transition:.25s;border:0;background:none;cursor:pointer}
+nav a:hover,nav a.on,.ctrl button:hover{color:var(--onaccent);background:var(--blue)}
+.ctrl .lang-btn b{color:var(--ink);font-weight:600}
+.ctrl button:hover b{color:inherit}
+.ctrl .theme-btn{font-size:14px;width:36px;padding:8px 0}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0;overflow:hidden}
+#sky{position:absolute;inset:0;width:100%;height:100%}
+.hero-in{position:relative;z-index:2;width:100%;overflow:hidden}
+.portrait{width:150px;height:150px;border-radius:50%;margin-bottom:32px;position:relative;
+  background:conic-gradient(from 0deg,var(--blue),var(--green),var(--sky),var(--blue));padding:3px;animation:spin 8s linear infinite}
+.portrait>div{width:100%;height:100%;border-radius:50%;background:var(--bg2);overflow:hidden;display:grid;place-items:center;animation:spin 8s linear infinite reverse}
+.portrait img{width:100%;height:100%;object-fit:cover}
+@keyframes spin{to{transform:rotate(360deg)}}
+.name{font-family:"Fraunces",Georgia,serif;font-size:clamp(40px,8.5vw,120px);line-height:1;font-weight:600;letter-spacing:-.03em;font-variation-settings:"opsz" 144}
+.name .row{display:inline-block;vertical-align:top;overflow:hidden;padding:0 .12em .38em 0;margin-bottom:-.38em}
+.name .row:first-child{margin-right:.14em}
+.name .row span{display:inline-block;transform:translateY(105%);animation:rise 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+.name .row:nth-child(2) span{animation-delay:.12s;font-style:italic;font-weight:400;color:var(--blue)}
+@keyframes rise{to{transform:none}}
+/* one line, always: JS shrinks the font if the longest phrase would not fit */
+.tag{margin-top:36px;font-size:clamp(18px,2.4vw,26px);color:var(--mute);white-space:nowrap;opacity:0;animation:fade 1s .7s forwards}
+.tag b{color:var(--ink);font-weight:500}
+#rot{color:var(--green);font-family:var(--serif);font-style:italic;font-size:1.15em;border-right:2px solid var(--green);padding-right:4px}
+@keyframes fade{to{opacity:1}}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;opacity:0;animation:fade 1s 1s forwards}
+.pill{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--pillbg);padding:8px 14px;border-radius:999px;color:var(--mute)}
+.pill i{font-style:normal;color:var(--green)}
+.scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--dim);z-index:2;text-align:center}
+.scroll::after{content:"";display:block;width:1px;height:46px;margin:12px auto 0;background:linear-gradient(var(--blue),transparent);animation:drip 2s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* MANIFESTO */
+#about .big{font-size:clamp(28px,4.2vw,54px);line-height:1.18;letter-spacing:-.025em;font-weight:500}
+#about .big .w{opacity:.12;transition:opacity .25s}
+#about .big .w.lit{opacity:1}
+#about .big .hl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:90px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stat{background:var(--bg);padding:30px 26px}
+.stat b{display:block;font-size:clamp(40px,5vw,60px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.stat b sup{font-size:.4em;color:var(--blue);vertical-align:top;margin-left:4px}
+.stat span{font-size:14px;color:var(--mute);display:block;margin-top:10px}
+
+/* JOURNEY */
+.legs{display:flex;gap:10px;flex-wrap:wrap;margin:-30px 0 60px}
+.legs span{font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:6px;background:var(--card);border:1px solid var(--line);color:var(--mute)}
+.journey{position:relative;padding-left:90px}
+#route{position:absolute;left:0;top:0;width:80px;height:100%;overflow:visible}
+#route .base{stroke:var(--line2);stroke-width:2;fill:none;stroke-dasharray:4 8}
+#route .lit{stroke:url(#rg);stroke-width:2.5;fill:none}
+.flame{transform-box:fill-box;transform-origin:50% 0;animation:flick .12s ease-in-out infinite alternate}
+@keyframes flick{to{transform:scaleY(.55)}}
+.pass{overflow:hidden;background:var(--card);border-radius:var(--radius);margin-bottom:46px;position:relative;
+  border:1px solid var(--line);opacity:0;transform:translateY(40px) rotate(-.6deg);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1),border-color .3s,background .4s}
+.pass.in{opacity:1;transform:none}
+.pass:hover{border-color:var(--line2)}
+.pass .main{padding:30px 34px;position:relative}
+.pass .wm{position:absolute;right:24px;top:-14px;font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:150px;line-height:1;color:var(--blue);opacity:.07;pointer-events:none}
+.meta{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:24px;padding-top:18px;border-top:1px dashed var(--line2);font-family:var(--mono)}
+.meta dt{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.meta dd{font-size:14px;color:var(--ink)}
+.meta .live{color:var(--green)}.meta .live::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:8px;box-shadow:0 0 0 0 rgba(62,230,160,.6);animation:ping 1.8s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(62,230,160,0)}100%{box-shadow:0 0 0 0 rgba(62,230,160,0)}}
+.ph{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:22px}
+.route-code{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.route-code b{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.route-code .dash{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--dim) 0 6px,transparent 6px 12px);position:relative;max-width:180px}
+.route-code .dash::after{content:"";position:absolute;left:50%;top:-10px;width:20px;height:20px;transform:translateX(-50%) rotate(90deg);background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%201.5c3.2%202.6%204.8%206.3%204.8%2010.6V17H7.2v-4.9C7.2%207.8%208.8%204.1%2012%201.5z%22%20fill%3D%22%234da3ff%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%229.5%22%20r%3D%222%22%20fill%3D%22%2307090f%22%2F%3E%3Cpath%20d%3D%22M7.2%2012.5%204%2016.5V19l3.2-1.6zM16.8%2012.5%2020%2016.5V19l-3.2-1.6z%22%20fill%3D%22%233ee6a0%22%2F%3E%3Cpath%20d%3D%22M9.6%2017.5h4.8L12%2023z%22%20fill%3D%22%233ee6a0%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat}
+.pass h3{font-size:28px;letter-spacing:-.02em;font-weight:600}
+.pass .co{color:var(--mute);margin:4px 0 18px}
+.pass ul{list-style:none}
+.pass li{position:relative;padding-left:20px;margin:8px 0;color:var(--body);font-size:15.5px}
+.pass li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:8px;border:1.5px solid var(--blue);border-radius:2px;transform:rotate(45deg)}
+.pass li strong{color:var(--ink);font-weight:600}
+
+/* TOOLKIT */
+.kit{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+.box h4{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:1px solid var(--line2);padding:10px 16px;border-radius:999px;font-size:15px;transition:transform .2s,background .2s,color .2s,border-color .2s;cursor:default;will-change:transform}
+.chip:hover{background:var(--blue);color:var(--onaccent);border-color:var(--blue)}
+.marquee{grid-column:1/-1;overflow:hidden;border-block:1px solid var(--line);padding:22px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee div{display:flex;gap:56px;width:max-content;animation:slide 30s linear infinite}
+.marquee span{font-size:34px;font-weight:600;letter-spacing:-.02em;white-space:nowrap;background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .3s}
+.marquee span:nth-child(odd){font-family:var(--serif);font-style:italic;font-weight:400;background-image:linear-gradient(90deg,var(--green),var(--sky))}
+.marquee:hover div{animation-play-state:paused}.marquee:hover span{opacity:.35}.marquee:hover span:hover{opacity:1}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* PASSPORT */
+.passport{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.stamp{aspect-ratio:1;border-radius:50%;border:3px double currentColor;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;
+  opacity:0;transform:scale(1.8) rotate(var(--r));transition:opacity .35s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.stamp.in{opacity:.95;transform:scale(1) rotate(var(--r))}
+.stamp:nth-child(1){color:var(--blue);--r:-8deg}
+.stamp:nth-child(2){color:var(--green);--r:6deg;border-radius:22px}
+.stamp:nth-child(3){color:var(--sky);--r:-4deg}
+.stamp:nth-child(4){color:var(--teal);--r:9deg;border-radius:22px}
+.stamp small{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase}
+.stamp b{font-size:17px;line-height:1.2;margin:10px 0 6px;color:var(--ink)}
+.stamp em{font-family:var(--serif);font-size:18px}
+.stamp .yr{font-family:var(--mono);font-size:22px;font-weight:600;margin-top:4px}
+.langs{display:flex;gap:16px;margin-top:56px;flex-wrap:wrap}
+.lang{flex:1;min-width:240px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;display:flex;justify-content:space-between;align-items:center}
+.lang b{font-size:20px}.lang span{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.meter{display:flex;gap:4px}.meter i{width:6px;height:18px;border-radius:2px;background:var(--line)}.meter i.on{background:var(--green)}
+
+/* VALUES constellation */
+#values .sky{position:relative;height:460px;border:1px solid var(--line);border-radius:var(--radius);background:radial-gradient(ellipse at 50% 120%,var(--skyglow),var(--bg) 70%);overflow:hidden}
+#cons{position:absolute;inset:0;width:100%;height:100%}
+.star{position:absolute;transform:translate(-50%,-50%);font-size:clamp(14px,1.8vw,19px);color:var(--mute);cursor:default;padding:6px 10px;transition:color .3s,text-shadow .3s;white-space:nowrap}
+.star::before{content:"";position:absolute;left:50%;top:-6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--ink);box-shadow:0 0 12px var(--blue)}
+.star:hover,.star.on{color:var(--blue);text-shadow:0 0 18px rgba(77,163,255,.5)}
+.interests{margin-top:28px;color:var(--mute);font-size:17px}
+.interests b{color:var(--ink);font-weight:500}
+
+/* DEPARTURE BOARD — stays dark in both themes, like a real one */
+#contact{padding-bottom:80px}
+.board{background:#030406;border:1px solid #1e2633;border-radius:var(--radius);padding:30px;font-family:var(--mono)}
+.board .head{display:grid;grid-template-columns:110px 1fr 160px;gap:16px;font-size:11px;letter-spacing:.2em;color:#4da3ff;padding-bottom:14px;border-bottom:1px solid #1e2633;margin-bottom:14px}
+.brow{display:grid;grid-template-columns:110px 1fr 160px;gap:16px;align-items:center;padding:8px 0;color:#8b95a7}
+.flap{display:flex;gap:3px;flex-wrap:wrap}
+.flap i{font-style:normal;display:inline-grid;place-items:center;width:clamp(17px,2.1vw,26px);height:clamp(24px,3vw,36px);background:#14181f;color:#f5f5f0;border-radius:3px;
+  font-size:clamp(12px,1.6vw,20px);font-weight:600;position:relative;box-shadow:inset 0 -1px 0 #000}
+.flap i::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#000}
+.status{font-size:13px;color:#3ee6a0}
+.status.blink{color:#4da3ff;animation:blink 1.2s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
+.btn{font-family:var(--sans);font-size:16px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:999px;border:1px solid var(--line2);background:var(--card);color:var(--ink);cursor:pointer;transition:.25s}
+.btn:hover{border-color:var(--blue);transform:translateY(-2px)}
+.btn.primary{background:var(--blue);color:var(--onaccent);border-color:var(--blue);font-weight:600}
+.btn.primary:hover{box-shadow:0 14px 40px -10px rgba(77,163,255,.6)}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--dim);font-family:var(--mono);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--mute)}
+
+#toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:13px;padding:12px 20px;border-radius:999px;transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:60}
+#toast.show{transform:translate(-50%,0)}
+.paper{position:fixed;left:0;top:0;z-index:70;pointer-events:none}
+
+/* responsive */
+@media (max-width:860px){
+  section{padding:90px 0}
+  nav{display:none}
+  .ctrl{top:14px;right:14px}
+  .stats{grid-template-columns:1fr 1fr}
+  .journey{padding-left:0}
+  #route{display:none}
+  .pass .main{padding:24px}
+  .pass .wm{font-size:110px}
+  .kit{grid-template-columns:1fr}
+  .passport{grid-template-columns:1fr 1fr}
+  .board .head,.brow{grid-template-columns:1fr}
+  .board .head span:not(:nth-child(2)),.brow .t{display:none}
+  #values .sky{height:520px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .name .row span{transform:none}
+}
+
+/* PRINT — a clean light one-pager */
+@media print{
+  @page{margin:14mm}
+  :root,:root[data-theme]{--bg:#fff;--bg2:#fff;--card:#fff;--line:#ddd;--line2:#ccc;--ink:#111;--body:#222;--mute:#444;--dim:#777;--blue:#1f6fd6;--green:#0b9a68;--sky:#0284c7;--teal:#0d9488}
+  body{background:#fff;font-size:11pt}
+  nav,.ctrl,#progress,#glow,#sky,.scroll,.marquee,#values .sky,.cta,footer,#toast,#route,.legs{display:none!important}
+  section{padding:14px 0;page-break-inside:avoid}
+  #hero{min-height:0}
+  .portrait{animation:none;width:90px;height:90px;margin-bottom:12px}.portrait>div{animation:none}
+  .name{font-size:32pt}
+  .tag{font-size:13pt!important}
+  .name .row span,.tag,.hero-meta,.pass,.stamp{opacity:1!important;transform:none!important;animation:none!important}
+  h2{font-size:18pt;margin-bottom:12px}
+  .eyebrow{margin-bottom:6px}
+  #about .big{font-size:13pt}
+  #about .big .w{opacity:1}
+  .stats{margin-top:16px}
+  .stat{padding:10px}.stat b{font-size:20pt}
+  .journey{padding-left:0}
+  .pass{margin-bottom:12px;page-break-inside:avoid}.pass .wm{display:none}
+  .pass .main{padding:14px}
+  .pass li{font-size:10pt}
+  .route-code b{font-size:20pt}
+  .passport{grid-template-columns:repeat(4,1fr)}
+  .stamp{color:#111!important;padding:8px}
+  .stamp b{font-size:10pt}
+  .board{background:#fff;border-color:#ddd}
+  .flap i{background:#fff;color:#111;border:1px solid #ccc}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="glow"></div>
+
+<nav>
+  <a href="#about" data-i18n="nav1">About</a><a href="#journey" data-i18n="nav2">Journey</a><a href="#kit" data-i18n="nav3">Toolkit</a><a href="#education" data-i18n="nav4">Passport</a><a href="#contact" data-i18n="nav5">Contact</a>
+</nav>
+<div class="ctrl">
+  <button class="lang-btn" id="langBtn" aria-label="Switch language"><b>EN</b> · SL</button>
+  <button class="theme-btn" id="themeBtn" aria-label="Switch light or dark mode">☾</button>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <div class="portrait"><div><img src="photo.jpg" alt="Portrait of Gregor Skok"></div></div>
+    <h1 class="name"><span class="row"><span>Gregor</span></span><span class="row"><span>Skok.</span></span></h1>
+    <p class="tag" id="tag"><span data-i18n="tag"><b>Product Creator.</b> I turn ambiguous needs into</span> <span id="rot">products people love</span></p>
+    <div class="hero-meta">
+      <span class="pill"><i>●</i> <span data-i18n="pill1">Ljubljana, Slovenia</span></span>
+      <span class="pill" data-i18n="pill2">Product · Project Manager @ <i>Nevron</i></span>
+      <span class="pill" data-i18n="pill3">Air · Land · Sea</span>
+    </div>
+  </div>
+  <div class="scroll" data-i18n="scroll">SCROLL</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="e1">01 — Manifesto</div>
+    <p class="big" id="manifesto" data-i18n="manifesto">I create strategic, <span class="hl">user-centric</span> solutions that lift the guest experience. I take ideas with a <span class="hl">purpose</span> and make them real — in turbulent, multi-stakeholder places, with steady delivery, clear decisions, and a <span class="hl">UX-first</span> mind.</p>
+    <div class="stats">
+      <div class="stat"><b data-count="12">0<sup data-i18n="s1u">yrs</sup></b><span data-i18n="s1">in travel, mobility &amp; guest experience</span></div>
+      <div class="stat"><b data-count="150">0<sup data-i18n="s2u">cars</sup></b><span data-i18n="s2">luxury fleet managed &amp; optimised</span></div>
+      <div class="stat"><b data-count="3">0<sup data-i18n="s3u">ind.</sup></b><span data-i18n="s3">aviation, mobility, hospitality &amp; maritime</span></div>
+      <div class="stat"><b data-count="3">0<sup data-i18n="s4u">unis</sup></b><span data-i18n="s4">Ljubljana · Prague · Vienna</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="e2">02 — Experience</div>
+    <h2 data-i18n="h2a">The itinerary, <em>latest first</em>.</h2>
+    <div class="legs"><span data-i18n="leg1">2020 — Hotels &amp; cruise ships</span><span data-i18n="leg2">2017 — Ground mobility</span><span data-i18n="leg3">2014 — Business aviation</span></div>
+    <div class="journey" id="jwrap">
+      <svg id="route" aria-hidden="true">
+        <defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ee6a0"/><stop offset="1" stop-color="#4da3ff"/></linearGradient></defs>
+        <path class="base" id="rbase"/><path class="lit" id="rlit"/>
+        <g id="plane"><g transform="scale(1.4) translate(-12 -12)"><path d="M12 1.5c3.2 2.6 4.8 6.3 4.8 10.6V17H7.2v-4.9C7.2 7.8 8.8 4.1 12 1.5z" fill="#4da3ff"/><circle cx="12" cy="9.5" r="2" fill="#07090f"/><path d="M7.2 12.5 4 16.5V19l3.2-1.6zM16.8 12.5 20 16.5V19l-3.2-1.6z" fill="#3ee6a0"/><path class="flame" d="M9.6 17.5h4.8L12 23z" fill="#3ee6a0"/></g></g>
+      </svg>
+
+      <article class="pass">
+        <div class="main">
+          <span class="wm" aria-hidden="true">2020</span>
+          <div class="ph" data-i18n="m3">Mission 03 · Current</div>
+          <div class="route-code"><b>2020</b><span class="dash"></span><b data-i18n="now">Now</b></div>
+          <h3 data-i18n="j3t">Product | Project Manager</h3>
+          <div class="co" data-i18n="j3c">Nevron d.o.o. · Škofja Loka — hospitality &amp; maritime guest experience</div>
+          <ul data-i18n="j3b">
+            <li><strong>Lead software products end to end</strong> for hotels and cruise ships — from requirements to release.</li>
+            <li><strong>Turn ambiguous needs into executable scope</strong> through stakeholder alignment.</li>
+            <li><strong>UX-first framing and validation</strong> — flows and prototypes in Figma, FigJam and Miro.</li>
+            <li><strong>Traceable delivery</strong> in Jira and Confluence — priorities, decisions, handovers.</li>
+          </ul>
+          <dl class="meta"><div><dt data-i18n="base">Base</dt><dd>Škofja Loka</dd></div><div><dt data-i18n="dom">Domain</dt><dd data-i18n="j3d">Hotels &amp; cruise ships</dd></div><div><dt>Status</dt><dd class="live" data-i18n="orbit">In orbit</dd></div></dl>
+        </div>
+      </article>
+
+      <article class="pass">
+        <div class="main">
+          <span class="wm" aria-hidden="true">2017</span>
+          <div class="ph" data-i18n="m2">Mission 02</div>
+          <div class="route-code"><b>2017</b><span class="dash"></span><b>2020</b></div>
+          <h3 data-i18n="j2t">Product &amp; Fleet Manager</h3>
+          <div class="co" data-i18n="j2c">GoGreen (Ekoturizem d.o.o.) · Ljubljana — eco-tourism</div>
+          <ul data-i18n="j2b">
+            <li><strong>Ran a fleet of 100–150 luxury vehicles</strong> and made it leaner.</li>
+            <li><strong>Launched new products</strong> in chauffeur services and vehicle rental.</li>
+            <li><strong>Kept many parallel projects moving</strong> in a turbulent operation, with every dependency visible.</li>
+            <li><strong>Aligned all ends of the business</strong> — travel agencies, event organisers and the team.</li>
+          </ul>
+          <dl class="meta"><div><dt data-i18n="base">Base</dt><dd>Ljubljana</dd></div><div><dt data-i18n="dom">Domain</dt><dd data-i18n="j2d">Eco-tourism &amp; mobility</dd></div><div><dt>Status</dt><dd data-i18n="done">Mission complete</dd></div></dl>
+        </div>
+      </article>
+
+      <article class="pass">
+        <div class="main">
+          <span class="wm" aria-hidden="true">2014</span>
+          <div class="ph" data-i18n="m1">Mission 01</div>
+          <div class="route-code"><b>2014</b><span class="dash"></span><b>2017</b></div>
+          <h3 data-i18n="j1t">Charter Sales Professional</h3>
+          <div class="co" data-i18n="j1c">Elit'avia · Ljubljana — business aviation</div>
+          <ul data-i18n="j1b">
+            <li><strong>Complex charter calculations</strong> and route &amp; service planning — exact, under time pressure.</li>
+            <li><strong>New approaches to passenger satisfaction</strong> in one of the most demanding sectors there is.</li>
+            <li><strong>Worked with international brokers &amp; agencies</strong> to align needs, limits and delivery.</li>
+            <li><strong>Optimised the sales process</strong> through business analysis.</li>
+          </ul>
+          <dl class="meta"><div><dt data-i18n="base">Base</dt><dd>Ljubljana</dd></div><div><dt data-i18n="dom">Domain</dt><dd data-i18n="j1d">Business aviation</dd></div><div><dt>Status</dt><dd data-i18n="done">Mission complete</dd></div></dl>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLKIT -->
+<section id="kit">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="e3">03 — Toolkit</div>
+    <h2 data-i18n="h2b">What I <em>bring</em> on board.</h2>
+    <div class="kit">
+      <div class="box"><h4 data-i18n="k1">Core competencies</h4><div class="chips">
+        <span class="chip" data-i18n="c1">Product creation</span><span class="chip" data-i18n="c2">End-to-end delivery</span><span class="chip" data-i18n="c3">UX-first problem framing</span>
+        <span class="chip" data-i18n="c4">Stakeholder alignment</span><span class="chip" data-i18n="c5">Cross-functional coordination</span><span class="chip" data-i18n="c6">Prototyping &amp; flows</span>
+        <span class="chip" data-i18n="c7">Workshop facilitation</span><span class="chip" data-i18n="c8">Risk &amp; issue tracking</span><span class="chip" data-i18n="c9">Multi-project prioritisation</span>
+      </div></div>
+      <div class="box"><h4 data-i18n="k2">Human side</h4><div class="chips">
+        <span class="chip" data-i18n="c10">Creative problem solving</span><span class="chip" data-i18n="c11">Analytical thinking</span><span class="chip" data-i18n="c12">Communication &amp; leadership</span>
+        <span class="chip" data-i18n="c13">Documentation discipline</span><span class="chip" data-i18n="c14">Time management</span><span class="chip" data-i18n="c15">Calm in turbulence</span>
+      </div></div>
+      <div class="marquee" aria-label="Tools: Jira, Confluence, Figma, FigJam, Miro, Monday, MS 365, Adobe, Lucid, Claude Code">
+        <div><span>Jira</span><span>Confluence</span><span>Figma</span><span>FigJam</span><span>Miro</span><span>Monday</span><span>MS 365</span><span>Adobe</span><span>Lucid</span><span>Claude Code</span>
+             <span>Jira</span><span>Confluence</span><span>Figma</span><span>FigJam</span><span>Miro</span><span>Monday</span><span>MS 365</span><span>Adobe</span><span>Lucid</span><span>Claude Code</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="e4">04 — Education</div>
+    <h2 data-i18n="h2c">Stamps in the <em>passport</em>.</h2>
+    <div class="passport">
+      <div class="stamp" data-i18n="st1"><small>Ljubljana · SI</small><b>MSc Business Logistics</b><em>Faculty of Economics</em><span class="yr">2012–14</span></div>
+      <div class="stamp" data-i18n="st2"><small>Prague · CZ</small><b>MSc Business &amp; Economics</b><em>University of Economics</em><span class="yr">2013–14</span></div>
+      <div class="stamp" data-i18n="st3"><small>Vienna · AT</small><b>Graduate Fellowship</b><em>WU Wien</em><span class="yr">2015</span></div>
+      <div class="stamp" data-i18n="st4"><small>Ljubljana · SI</small><b>UX Akademija</b><em>Creatim · certificate</em><span class="yr">2024</span></div>
+    </div>
+    <div class="langs">
+      <div class="lang"><div data-i18n="l1"><b>Slovenian</b><br><span>Native</span></div><div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+      <div class="lang"><div data-i18n="l2"><b>English</b><br><span>Professional</span></div><div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="e5">05 — Values</div>
+    <h2 data-i18n="h2d">The stars I <em>navigate</em> by.</h2>
+    <div class="sky" id="vsky"><canvas id="cons" aria-hidden="true"></canvas></div>
+    <p class="interests" data-i18n="int"><b>Curious about:</b> people, psychology, AI, history, cultures, travel, nature, consciousness, technology, patterns, systems, science…</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="e6">06 — Contact</div>
+    <h2 data-i18n="h2e">Next <em>departure</em>?</h2>
+    <div class="board" aria-label="Departure board">
+      <div class="head"><span data-i18n="bh1">TIME</span><span data-i18n="bh2">DESTINATION</span><span>STATUS</span></div>
+      <div class="brow"><span class="t" data-i18n="bnext">NEXT</span><div class="flap" id="next"></div><span class="status blink" data-i18n="bs1">BOARDING</span></div>
+      <div class="brow"><span class="t">2020</span><div class="flap"></div><span class="status" data-i18n="bs2">IN FLIGHT</span></div>
+      <div class="brow"><span class="t">2017</span><div class="flap"></div><span class="status" data-i18n="bs3">DEPARTED</span></div>
+      <div class="brow"><span class="t">2014</span><div class="flap"></div><span class="status" data-i18n="bs3">DEPARTED</span></div>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="mailto:gregor.skok.mail@gmail.com">✉ gregor.skok.mail@gmail.com</a>
+      <button class="btn" id="copy" data-i18n="copy">Copy email</button>
+      <a class="btn" href="https://www.linkedin.com/in/gregor-skok-9502214b/" target="_blank" rel="noopener">in · LinkedIn</a>
+      <button class="btn" onclick="window.print()" data-i18n="pdf">↓ Save as PDF</button>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Gregor Skok · Ljubljana</span><span data-i18n="egg">psst — type <kbd>launch</kbd></span></div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+/* ---------- LANGUAGE ---------- */
+const SL = {
+  nav1: 'O meni', nav2: 'Pot', nav3: 'Orodja', nav4: 'Potni list', nav5: 'Kontakt',
+  tag: '<b>Ustvarjalec produktov.</b> Nejasne potrebe spremenim v',
+  pill1: 'Ljubljana, Slovenija', pill2: 'Produktni · projektni vodja @ <i>Nevron</i>', pill3: 'Zrak · Kopno · Morje', scroll: 'NAPREJ',
+  e1: '01 — Manifest',
+  manifesto: 'Ustvarjam strateške rešitve, <span class="hl">osredotočene na uporabnika</span>, ki dvigujejo izkušnjo gostov. Ideje z <span class="hl">namenom</span> spremenim v resničnost — v razgibanih okoljih z mnogimi deležniki, z zanesljivo izvedbo, jasnimi odločitvami in <span class="hl">UX-first</span> razmišljanjem.',
+  s1u: 'let', s1: 'v potovanjih, mobilnosti in izkušnji gostov',
+  s2u: 'vozil', s2: 'luksuzna flota, ki sem jo vodil in optimiziral',
+  s3u: 'panoge', s3: 'letalstvo, mobilnost, hotelirstvo in pomorstvo',
+  s4u: 'univ.', s4: 'Ljubljana · Praga · Dunaj',
+  e2: '02 — Izkušnje', h2a: 'Pot, <em>najnovejše najprej</em>.',
+  leg1: '2020 — Hoteli in križarke', leg2: '2017 — Kopenska mobilnost', leg3: '2014 — Poslovno letalstvo',
+  m3: 'Misija 03 · Trenutno', m2: 'Misija 02', m1: 'Misija 01', now: 'Danes',
+  base: 'Baza', dom: 'Področje', orbit: 'V orbiti', done: 'Misija končana',
+  j3t: 'Produktni | projektni vodja', j3c: 'Nevron d.o.o. · Škofja Loka — izkušnja gostov v hotelirstvu in pomorstvu', j3d: 'Hoteli in križarke',
+  j3b: `<li><strong>Vodim programske produkte od začetka do konca</strong> za hotele in križarke — od zahtev do izdaje.</li>
+        <li><strong>Nejasne potrebe spremenim v izvedljiv obseg</strong> z usklajevanjem deležnikov.</li>
+        <li><strong>UX-first okvirjanje in validacija</strong> — tokovi in prototipi v Figmi, FigJamu in Miru.</li>
+        <li><strong>Sledljiva izvedba</strong> v Jiri in Confluencu — prioritete, odločitve, predaje.</li>`,
+  j2t: 'Vodja produktov in flote', j2c: 'GoGreen (Ekoturizem d.o.o.) · Ljubljana — ekoturizem', j2d: 'Ekoturizem in mobilnost',
+  j2b: `<li><strong>Vodil floto 100–150 luksuznih vozil</strong> in jo naredil učinkovitejšo.</li>
+        <li><strong>Lansiral nove produkte</strong> na področju šoferskih storitev in najema vozil.</li>
+        <li><strong>Vodil več vzporednih projektov</strong> v razgibanem okolju, z jasno vidnimi odvisnostmi.</li>
+        <li><strong>Uskladil vse konce poslovanja</strong> — turistične agencije, organizatorje dogodkov in ekipo.</li>`,
+  j1t: 'Prodaja čarterskih letov', j1c: 'Elit\'avia · Ljubljana — poslovno letalstvo', j1d: 'Poslovno letalstvo',
+  j1b: `<li><strong>Zahtevni čarterski izračuni</strong> ter načrtovanje poti in storitev — natančno, pod časovnim pritiskom.</li>
+        <li><strong>Novi pristopi k zadovoljstvu potnikov</strong> v enem najzahtevnejših sektorjev.</li>
+        <li><strong>Sodelovanje z mednarodnimi posredniki in agencijami</strong> pri usklajevanju potreb, omejitev in izvedbe.</li>
+        <li><strong>Optimizacija prodajnega procesa</strong> s poslovno analizo.</li>`,
+  e3: '03 — Orodja', h2b: 'Kaj <em>prinašam</em> na krov.', k1: 'Ključne kompetence', k2: 'Človeška stran',
+  c1: 'Ustvarjanje produktov', c2: 'Izvedba od začetka do konca', c3: 'UX-first okvirjanje problemov', c4: 'Usklajevanje deležnikov',
+  c5: 'Medfunkcijsko sodelovanje', c6: 'Prototipi in tokovi', c7: 'Vodenje delavnic', c8: 'Spremljanje tveganj in težav',
+  c9: 'Prioritizacija več projektov', c10: 'Kreativno reševanje problemov', c11: 'Analitično razmišljanje', c12: 'Komunikacija in vodenje',
+  c13: 'Disciplina dokumentiranja', c14: 'Upravljanje časa', c15: 'Mirnost v turbulenci',
+  e4: '04 — Izobrazba', h2c: 'Žigi v <em>potnem listu</em>.',
+  st1: '<small>Ljubljana · SI</small><b>Magisterij poslovne logistike</b><em>Ekonomska fakulteta</em><span class="yr">2012–14</span>',
+  st2: '<small>Praga · CZ</small><b>Magisterij ekonomije in poslovanja</b><em>Ekonomska univerza</em><span class="yr">2013–14</span>',
+  st3: '<small>Dunaj · AT</small><b>Podiplomska štipendija</b><em>WU Dunaj</em><span class="yr">2015</span>',
+  st4: '<small>Ljubljana · SI</small><b>UX Akademija</b><em>Creatim · certifikat</em><span class="yr">2024</span>',
+  l1: '<b>Slovenščina</b><br><span>Materni jezik</span>', l2: '<b>Angleščina</b><br><span>Profesionalno</span>',
+  e5: '05 — Vrednote', h2d: 'Zvezde, po katerih <em>navigiram</em>.',
+  int: '<b>Zanima me:</b> ljudje, psihologija, UI, zgodovina, kulture, potovanja, narava, zavest, tehnologija, vzorci, sistemi, znanost …',
+  e6: '06 — Kontakt', h2e: 'Naslednji <em>odhod</em>?',
+  bh1: 'ČAS', bh2: 'DESTINACIJA', bnext: 'NASL.', bs1: 'VKRCANJE', bs2: 'V LETU', bs3: 'ODLETELO',
+  copy: 'Kopiraj e-pošto', pdf: '↓ Shrani kot PDF', egg: 'psst — vtipkaj <kbd>launch</kbd>',
+};
+const TXT = {
+  en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', light: 'Light mode', dark: 'Dark mode',
+        rot: ['products people love', 'executable scope', 'calm journeys', 'clear decisions', 'better guest experiences'],
+        values: ['Family', 'Integrity', 'Growth', 'Development', 'Responsibility', 'Honesty', 'Compassion', 'Empathy', 'Adaptability', 'Flexibility'],
+        board: ['GUEST EXPERIENCE', 'LUXURY MOBILITY', 'BUSINESS AVIATION'], next: ['YOUR TEAM', 'YOUR PRODUCT', 'YOUR NEXT LAUNCH'] },
+  sl: { title: 'Gregor Skok — Ustvarjalec produktov', copied: '✓ E-pošta kopirana — se slišiva', lift: '🚀 Vzlet', light: 'Svetli način', dark: 'Temni način',
+        rot: ['priljubljene produkte', 'izvedljive načrte', 'mirna potovanja', 'jasne odločitve', 'boljše izkušnje gostov'],
+        values: ['Družina', 'Integriteta', 'Rast', 'Razvoj', 'Odgovornost', 'Poštenost', 'Sočutje', 'Empatija', 'Prilagodljivost', 'Fleksibilnost'],
+        board: ['IZKUŠNJA GOSTOV', 'LUKSUZNA MOBILNOST', 'POSLOVNO LETALSTVO'], next: ['VAŠA EKIPA', 'VAŠ PRODUKT', 'VAŠ NASLEDNJI ZAGON'] },
+};
+const EN = {}; $$('[data-i18n]').forEach(el => EN[el.dataset.i18n] = el.innerHTML);
+let LANG = document.documentElement.lang === 'sl' ? 'sl' : 'en';
+const T = () => TXT[LANG];
+const onLang = [];   // modules register a re-render here
+
+function setLang(l) {
+  LANG = l; document.documentElement.lang = l; store.set('cv-lang', l); document.title = T().title;
+  $$('[data-i18n]').forEach(el => { const v = (l === 'sl' ? SL : EN)[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+  $('#langBtn').innerHTML = l === 'sl' ? 'EN · <b>SL</b>' : '<b>EN</b> · SL';
+  onLang.forEach(fn => fn());
+}
+$('#langBtn').addEventListener('click', () => setLang(LANG === 'en' ? 'sl' : 'en'));
+
+/* ---------- THEME ---------- */
+let STAR = '238,241,246', LINKA = .12;
+function readTheme() { const cs = getComputedStyle(document.documentElement); STAR = cs.getPropertyValue('--star').trim(); LINKA = +cs.getPropertyValue('--link-a') || .12; }
+function isLight() { return document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'light' : matchMedia('(prefers-color-scheme: light)').matches; }
+function paintThemeBtn() { const b = $('#themeBtn'); b.textContent = isLight() ? '☾' : '☀'; b.title = isLight() ? T().dark : T().light; $('meta[name=theme-color]').content = isLight() ? '#f5f7fb' : '#07090f'; }
+$('#themeBtn').addEventListener('click', () => {
+  const t = isLight() ? 'dark' : 'light'; document.documentElement.dataset.theme = t; store.set('cv-theme', t); readTheme(); paintThemeBtn();
+});
+matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => { readTheme(); paintThemeBtn(); });
+onLang.push(paintThemeBtn);
+
+/* ---------- progress + glow + nav state ---------- */
+const bar = $('#progress'), glow = $('#glow');
+addEventListener('pointermove', e => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
+const navLinks = $$('nav a');
+function onScroll() {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (scrollY / h * 100) + '%';
+  let cur = '';
+  $$('section[id]').forEach(s => { if (s.getBoundingClientRect().top < innerHeight * .4) cur = s.id; });
+  navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur));
+  manifesto(); route();
+}
+addEventListener('scroll', onScroll, { passive: true });
+
+/* ---------- HERO sky: city lights that link up near the cursor ---------- */
+(() => {
+  const c = $('#sky'), x = c.getContext('2d'); let W, H, pts = [], m = { x: -1e4, y: -1e4 };
+  function size() {
+    W = c.width = c.offsetWidth * devicePixelRatio; H = c.height = c.offsetHeight * devicePixelRatio;
+    const n = Math.min(140, Math.floor(W * H / (14000 * devicePixelRatio * devicePixelRatio)));
+    pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: Math.random() * 1.6 + .4, a: Math.random() < .12 }));
+  }
+  c.parentElement.addEventListener('pointermove', e => { const b = c.getBoundingClientRect(); m.x = (e.clientX - b.left) * devicePixelRatio; m.y = (e.clientY - b.top) * devicePixelRatio; });
+  c.parentElement.addEventListener('pointerleave', () => m.x = m.y = -1e4);
+  const D = 130 * devicePixelRatio, M = 220 * devicePixelRatio;
+  function tick() {
+    x.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      if (!RM) { p.x += p.vx; p.y += p.vy; }
+      if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
+      if (Math.hypot(p.x - m.x, p.y - m.y) < M) { p.x += (m.x - p.x) * .004; p.y += (m.y - p.y) * .004; }
+    }
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+      const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < D) {
+        const near = Math.hypot((a.x + b.x) / 2 - m.x, (a.y + b.y) / 2 - m.y) < M;
+        x.strokeStyle = near ? `rgba(77,163,255,${(1 - d / D) * .7})` : `rgba(62,230,160,${(1 - d / D) * LINKA})`;
+        x.lineWidth = near ? 1.2 : .6; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke();
+      }
+    }
+    for (const p of pts) { x.fillStyle = p.a ? '#4da3ff' : `rgba(${STAR},.8)`; x.beginPath(); x.arc(p.x, p.y, p.r * devicePixelRatio, 0, 7); x.fill(); }
+    requestAnimationFrame(tick);
+  }
+  size(); addEventListener('resize', size); tick();
+})();
+
+/* ---------- rotating phrase: typewriter, and the line never wraps ---------- */
+const tag = $('#tag'), rot = $('#rot');
+function fitTag() {
+  tag.style.fontSize = '';
+  const base = parseFloat(getComputedStyle(tag).fontSize), keep = rot.textContent, avail = tag.parentElement.clientWidth - 48;
+  let need = 0;
+  for (const w of T().rot) { rot.textContent = w; need = Math.max(need, tag.scrollWidth); }
+  rot.textContent = keep;
+  if (need > avail) tag.style.fontSize = Math.floor(base * avail / need * 10) / 10 + 'px';
+}
+const typer = (() => {
+  let w = 0, i = 0, del = true, timer;
+  function step() {
+    const words = T().rot;
+    if (del) { i--; rot.textContent = words[w].slice(0, Math.max(0, i)); if (i <= 0) { del = false; w = (w + 1) % words.length; } timer = setTimeout(step, 35); }
+    else { i++; rot.textContent = words[w].slice(0, i); if (i >= words[w].length) { del = true; timer = setTimeout(step, 2200); } else timer = setTimeout(step, 65); }
+  }
+  function reset() { clearTimeout(timer); w = 0; rot.textContent = T().rot[0]; i = rot.textContent.length; del = true; if (!RM) timer = setTimeout(step, 2600); }
+  return { reset };
+})();
+onLang.push(() => { typer.reset(); fitTag(); });
+addEventListener('resize', fitTag);
+
+/* ---------- manifesto: words light up as you scroll ---------- */
+const man = $('#manifesto');
+function wrapWords(node) {
+  [...node.childNodes].forEach(n => {
+    if (n.nodeType === 3) { const f = document.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(t => { if (!t.trim()) f.append(t); else { const s = document.createElement('span'); s.className = 'w'; s.textContent = t; f.append(s); } }); n.replaceWith(f); }
+    else if (n.nodeType === 1) n.classList.add('w');
+  });
+}
+function manifesto() {
+  const b = man.getBoundingClientRect(), ws = $$('.w', man);
+  const p = Math.min(1, Math.max(0, (innerHeight * .85 - b.top) / (b.height + innerHeight * .35)));
+  const n = RM ? ws.length : Math.round(p * ws.length);
+  ws.forEach((w, i) => w.classList.toggle('lit', i < n));
+}
+onLang.push(() => { wrapWords(man); manifesto(); });
+
+/* ---------- reveal on view ---------- */
+const io = (cls, fn, th = .25) => { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fn(e.target); o.unobserve(e.target); } }), { threshold: th }); $$(cls).forEach(el => o.observe(el)); };
+io('[data-count]', el => {
+  const end = +el.dataset.count, t0 = performance.now(), dur = RM ? 1 : 1600, sup = el.querySelector('sup');
+  (function f(t) { const k = Math.min(1, (t - t0) / dur); el.firstChild.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
+});
+io('.pass', el => el.classList.add('in'), .15);
+io('.stamp', el => setTimeout(() => el.classList.add('in'), $$('.stamp').indexOf(el) * 180), .4);
+
+/* ---------- route that draws itself along the mission cards ---------- */
+const svg = $('#route'), base = $('#rbase'), lit = $('#rlit'), plane = $('#plane'), jw = $('#jwrap'); let L = 0;
+function buildRoute() {
+  const h = jw.offsetHeight; svg.setAttribute('viewBox', `0 0 80 ${h}`);
+  let d = `M40 10`; const seg = 220;
+  for (let y = 10; y < h - 10; y += seg) { const y2 = Math.min(y + seg, h - 10); d += ` C${y / seg % 2 ? 70 : 10} ${y + seg * .35}, ${y / seg % 2 ? 10 : 70} ${y2 - seg * .35}, 40 ${y2}`; }
+  base.setAttribute('d', d); lit.setAttribute('d', d); L = lit.getTotalLength();
+  lit.style.strokeDasharray = L; route();
+}
+function route() {
+  if (!L) return;
+  const b = jw.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (innerHeight * .6 - b.top) / b.height));
+  lit.style.strokeDashoffset = L * (1 - p);
+  const len = Math.max(0.5, L * p), pt = lit.getPointAtLength(len), pt2 = lit.getPointAtLength(Math.min(L, len + 2));
+  const ang = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
+  plane.setAttribute('transform', `translate(${pt.x} ${pt.y}) rotate(${ang + 90})`);   // drawn nose-up; turn the nose along the flight
+}
+addEventListener('load', buildRoute); addEventListener('resize', buildRoute);
+onLang.push(() => requestAnimationFrame(buildRoute));
+
+/* ---------- magnetic chips ---------- */
+if (!RM) $$('.chip').forEach(ch => {
+  ch.addEventListener('pointermove', e => { const b = ch.getBoundingClientRect(); ch.style.transform = `translate(${(e.clientX - b.left - b.width / 2) * .25}px,${(e.clientY - b.top - b.height / 2) * .35}px)`; });
+  ch.addEventListener('pointerleave', () => ch.style.transform = '');
+});
+
+/* ---------- values constellation ---------- */
+(() => {
+  const sky = $('#vsky'), c = $('#cons'), x = c.getContext('2d');
+  const P = [[.5, .2], [.2, .3], [.8, .28], [.66, .5], [.32, .55], [.1, .72], [.5, .8], [.82, .76], [.9, .5], [.18, .48]];
+  const links = [[0, 1], [0, 2], [1, 9], [9, 4], [4, 0], [2, 3], [3, 8], [8, 7], [7, 6], [6, 5], [5, 9], [4, 6], [3, 4]];
+  const els = P.map(([px, py]) => { const s = document.createElement('span'); s.className = 'star'; s.style.left = px * 100 + '%'; s.style.top = py * 100 + '%'; sky.append(s); return s; });
+  const label = () => els.forEach((e, i) => e.textContent = T().values[i]); label(); onLang.push(label);
+  let hover = -1, reveal = 0;
+  els.forEach((e, i) => { e.addEventListener('pointerenter', () => hover = i); e.addEventListener('pointerleave', () => hover = -1); });
+  new IntersectionObserver(es => { if (es[0].isIntersecting) { const t0 = performance.now(); (function f(t) { reveal = Math.min(1, (t - t0) / (RM ? 1 : 2200)); if (reveal < 1) requestAnimationFrame(f); })(t0); } }, { threshold: .4 }).observe(sky);
+  const bg = Array.from({ length: 90 }, () => [Math.random(), Math.random(), Math.random()]);
+  function draw(t) {
+    const W = c.width = sky.offsetWidth * devicePixelRatio, H = c.height = sky.offsetHeight * devicePixelRatio;
+    for (const [a, b, z] of bg) { x.fillStyle = `rgba(${STAR},${.15 + .35 * Math.abs(Math.sin(t / 900 + z * 9))})`; x.fillRect(a * W, b * H, 1.4 * devicePixelRatio, 1.4 * devicePixelRatio); }
+    links.forEach(([a, b], k) => {
+      const prog = Math.min(1, Math.max(0, reveal * links.length - k)); if (!prog) return;
+      const A = P[a], B = P[b], on = hover === a || hover === b;
+      x.strokeStyle = on ? 'rgba(77,163,255,.9)' : `rgba(62,230,160,${LINKA * 2.3})`; x.lineWidth = (on ? 1.6 : 1) * devicePixelRatio;
+      x.beginPath(); x.moveTo(A[0] * W, A[1] * H - 4 * devicePixelRatio); x.lineTo((A[0] + (B[0] - A[0]) * prog) * W, (A[1] + (B[1] - A[1]) * prog) * H - 4 * devicePixelRatio); x.stroke();
+    });
+    els.forEach((e, i) => e.classList.toggle('on', hover >= 0 && links.some(([a, b]) => (a === hover && b === i) || (b === hover && a === i))));
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+
+/* ---------- split-flap departure board ---------- */
+(() => {
+  const CH = ' ABCČDEFGHIJKLMNOPRSŠTUVZŽY0123456789';
+  const flaps = $$('.flap'), nx = $('#next'); let shown = false, k = 0, cyc;
+  const texts = () => [T().next[k % T().next.length], ...T().board];
+  function flap(el, text) {
+    el.innerHTML = ''; const cells = [...text].map(() => { const i = document.createElement('i'); i.textContent = ' '; el.append(i); return i; });
+    cells.forEach((cell, j) => {
+      const target = text[j]; if (RM) { cell.textContent = target; return; }
+      let n = 0; const spins = 6 + j * 2 + Math.floor(Math.random() * 6);
+      const iv = setInterval(() => { n++; cell.textContent = n >= spins ? target : CH[Math.floor(Math.random() * CH.length)]; if (n >= spins) clearInterval(iv); }, 55);
+    });
+  }
+  const blank = () => flaps.forEach((f, i) => f.innerHTML = [...texts()[i]].map(() => '<i> </i>').join(''));
+  function showAll() { flaps.forEach((f, i) => setTimeout(() => flap(f, texts()[i]), i * 250)); }
+  blank();
+  new IntersectionObserver(es => {
+    if (!es[0].isIntersecting || shown) return; shown = true; showAll();
+    if (!RM) cyc = setInterval(() => { k++; flap(nx, texts()[0]); }, 5200);
+  }, { threshold: .4 }).observe($('.board'));
+  onLang.push(() => { k = 0; shown ? showAll() : blank(); });
+})();
+
+/* ---------- copy email + toast ---------- */
+const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2200); };
+$('#copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText('gregor.skok.mail@gmail.com'); toast(T().copied); }
+  catch (e) { toast('gregor.skok.mail@gmail.com'); }
+});
+
+/* ---------- easter egg: type "launch" ---------- */
+(() => {
+  let buf = '';
+  const ROCKET = '<path d="M12 1.5c3.2 2.6 4.8 6.3 4.8 10.6V17H7.2v-4.9C7.2 7.8 8.8 4.1 12 1.5z" fill="#4da3ff"/><circle cx="12" cy="9.5" r="2" fill="#07090f"/><path d="M7.2 12.5 4 16.5V19l3.2-1.6zM16.8 12.5 20 16.5V19l-3.2-1.6z" fill="#3ee6a0"/><path class="flame" d="M9.6 17.5h4.8L12 23z" fill="#3ee6a0"/>';
+  addEventListener('keydown', e => {
+    if (e.key.length !== 1) return; buf = (buf + e.key.toLowerCase()).slice(-6);
+    if (buf !== 'launch') return; toast(T().lift);
+    for (let i = 0; i < 14; i++) {
+      const p = document.createElement('span'), z = 24 + Math.random() * 36; p.className = 'paper';
+      p.innerHTML = `<svg viewBox="0 0 24 24" width="${z}" height="${z}">${ROCKET}</svg>`; document.body.append(p);
+      const x0 = innerWidth * (.05 + Math.random() * .9), dx = (Math.random() - .5) * 160, dur = 1600 + Math.random() * 1600;
+      p.style.transform = `translate(${x0}px,${innerHeight + 80}px)`;
+      p.animate([{ transform: `translate(${x0}px,${innerHeight + 80}px)` }, { transform: `translate(${x0 + dx}px,-120px)` }],
+        { duration: RM ? 1 : dur, delay: i * 110, easing: 'cubic-bezier(.5,0,.8,.6)' }).onfinish = () => p.remove();
+    }
+  });
+})();
+
+/* ---------- start ---------- */
+readTheme();
+setLang(LANG);
+document.fonts && document.fonts.ready.then(fitTag);
+onScroll();
+</script>
+</body>
+</html>
