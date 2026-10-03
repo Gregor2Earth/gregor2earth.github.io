@@ -231,8 +231,16 @@ nav a.on::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0
 .star{position:absolute;transform:translate(-50%,-50%);font-size:clamp(14px,1.8vw,19px);color:var(--mute);cursor:default;padding:6px 10px;transition:color .3s,text-shadow .3s;white-space:nowrap}
 .star::before{content:"";position:absolute;left:50%;top:-6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--ink);box-shadow:0 0 12px var(--blue)}
 .star:hover,.star.on{color:var(--blue);text-shadow:0 0 18px rgba(77,163,255,.5)}
-.interests{margin-top:28px;color:var(--mute);font-size:17px}
-.interests b{color:var(--ink);font-weight:500}
+.interests{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px;display:flex;gap:20px 32px;align-items:center;flex-wrap:wrap}
+.interests h3{flex:none;min-width:190px;font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.interests h3 em{font-style:italic;font-weight:500;color:var(--blue)}
+.int-chips{flex:1;display:flex;flex-wrap:wrap;gap:10px}
+.int-chips span{--i:0;padding:9px 16px;border-radius:999px;font-size:15px;color:var(--ink);border:1px solid transparent;
+  background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(90deg,var(--blue),var(--green)) border-box;
+  opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i) * 55ms)}
+.interests.in .int-chips span{opacity:1;transform:none}
+.interests.in .int-chips span:hover{transform:translateY(-3px);transition-delay:0s}
+.int-chips span.more{background:none;border:1px dashed var(--line2);color:var(--mute)}
 
 /* DEPARTURE BOARD — stays dark in both themes, like a real one */
 #contact{padding-bottom:64px}
@@ -278,7 +286,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
 }
 @media (max-width:560px){.how{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
   .name .row span{transform:none}
 }
 
@@ -341,7 +349,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
 
   #printValues span{display:inline-block;margin:0 6px 6px 0;padding:4px 12px;border-radius:999px;border:1px solid var(--line2);color:var(--blue);font-size:10pt}
   #printValues span:nth-child(even){color:var(--green)}
-  .interests{font-size:10pt;margin-top:8px}
+  .interests{margin-top:8px;padding:10px 14px}.interests h3{font-size:12pt;min-width:0}.int-chips span{opacity:1!important;transform:none!important;padding:3px 10px;font-size:9pt}
 
   .board{break-inside:avoid;padding:16px}
   .board .head,.brow{grid-template-columns:70px 1fr 110px}
@@ -529,7 +537,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
     <h2 data-i18n="h2d">The stars I <em>navigate</em> by.</h2>
     <div class="sky" id="vsky"><canvas id="cons" aria-hidden="true"></canvas></div>
     <p class="print-only" id="printValues"></p>
-    <p class="interests" data-i18n="int"><b>Curious about:</b> people, psychology, AI, history, cultures, travel, nature, consciousness, technology, patterns, systems, science…</p>
+    <div class="interests" data-i18n="int"><h3>Curious <em>about</em></h3><div class="int-chips"><span>people</span><span>psychology</span><span>AI</span><span>history</span><span>cultures</span><span>travel</span><span>nature</span><span>consciousness</span><span>technology</span><span>patterns</span><span>systems</span><span>science</span><span class="more">and more…</span></div></div>
   </div>
 </section>
 
@@ -578,7 +586,7 @@ const SL = {
  "qr1": "Interaktivna različica",
  "scroll": "NAVZDOL",
  "e1": "01 · Manifest",
- "manifesto": "Ustvarjam strateške rešitve, <span class=\"hl\">osredotočene na uporabnika</span>, ki izboljšujejo celotno izkušnjo uporabnikov. Ideje uresničujem tudi v <span class=\"hl\">turbulentnih</span> okoljih z veliko deležniki. Pri tem skrbim za zanesljivo izvedbo, jasne odločitve in razmišljanje po načelu <span class=\"hl\">UX-first</span>. AI je moj <span class=\"hl\">kopilot</span>, od prve ideje, prek delujočega prototipa, do končnega produkta.",
+ "manifesto": "Ustvarjam strateške rešitve, <span class=\"hl\">osredotočene na uporabnika</span>, ki izboljšujejo celotno izkušnjo. Ideje uresničujem tudi v <span class=\"hl\">turbulentnih</span> okoljih z veliko deležniki. Pri tem skrbim za zanesljivo izvedbo, jasne odločitve in razmišljanje po načelu <span class=\"hl\">UX-first</span>. AI je moj <span class=\"hl\">kopilot</span>, od prve ideje, prek delujočega prototipa, do končnega produkta.",
  "s1u": "let",
  "s1": "v turizmu, mobilnosti in izkušnji uporabnikov",
  "s2u": "vozil",
@@ -619,7 +627,7 @@ const SL = {
  "hw3": "<span class=\"num\">03</span><h3>Prototip</h3><p>Idejo čim prej oživim. S HTML prototipom, ki ga izdelam z AI, imam delujoč zaslon v nekaj urah, ne v tednih.</p><div class=\"ex\"><span>V praksi</span>Interaktivne HTML prototipe ustvarim z AI in jih poganjam lokalno, nato jih skupaj z deležniki izpopolnim in preizkusim z uporabniki, še preden zanje porabimo razvojne zmogljivosti.</div>",
  "hw4": "<span class=\"num\">04</span><h3>Izvedba</h3><p>Izvedbo vodim predvidljivo, z jasnimi prioritetami, preglednim napredkom in tesnim sodelovanjem z razvojno ekipo.</p><div class=\"ex\"><span>V praksi</span>Preverjeni prototip razdelim na naloge v orodju za upravljanje nalog, nato ga skupaj z backend in frontend razvijalci zgradimo. Deležnike pri tem redno obveščam, predaje pa so urejene.</div>",
  "e3": "04 · Znanja in orodja",
- "h2b": "Kaj <em>prinašam</em> na krov.",
+ "h2b": "Moja <em>orodjarna</em>.",
  "k1": "Ključne kompetence",
  "c1": "Ustvarjanje produktov",
  "c2": "Izvedba od začetka do konca",
@@ -650,8 +658,8 @@ const SL = {
  "l1": "<b>Slovenščina</b><br><span>Materni jezik</span>",
  "l2": "<b>Angleščina</b><br><span>Poslovna raven</span>",
  "e5": "06 · Vrednote",
- "h2d": "Zvezde, po katerih <em>krmarim</em>.",
- "int": "<b>Zanimajo me:</b> ljudje, psihologija, AI, zgodovina, kulture, potovanja, narava, zavest, tehnologija, vzorci, sistemi, znanost …",
+ "h2d": "Zvezde, ki mi <em>kažejo</em> pot.",
+ "int": "<h3>Zanimajo <em>me</em></h3><div class=\"int-chips\"><span>ljudje</span><span>psihologija</span><span>AI</span><span>zgodovina</span><span>kulture</span><span>potovanja</span><span>narava</span><span>zavest</span><span>tehnologija</span><span>vzorci</span><span>sistemi</span><span>znanost</span><span class=\"more\">in še več …</span></div>",
  "e6": "07 · Kontakt",
  "h2e": "Naslednji <em>odhod</em>?",
  "bh1": "ČAS",
@@ -816,6 +824,9 @@ io('[data-count]', el => {
   (function f(t) { const k = Math.min(1, (t - t0) / dur); el.firstChild.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
 });
 io('.pass', el => el.classList.add('in'), .15);
+const numberChips = () => $$('.int-chips span').forEach((c, i) => c.style.setProperty('--i', i));
+numberChips(); onLang.push(numberChips);
+io('.interests', el => el.classList.add('in'), .3);
 io('.stamp', el => setTimeout(() => el.classList.add('in'), $$('.stamp').indexOf(el) * 180), .4);
 
 /* ---------- route that draws itself along the mission cards ---------- */
