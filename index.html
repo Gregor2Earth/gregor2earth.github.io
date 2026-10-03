@@ -82,11 +82,22 @@ h2 em,.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-s
 nav,.ctrl{position:fixed;top:18px;z-index:40;display:flex;gap:4px;padding:6px;border:1px solid var(--line);background:var(--navbg);backdrop-filter:blur(14px);border-radius:999px}
 nav{left:50%;transform:translateX(-50%)}
 .ctrl{right:18px;z-index:45}
-nav a,.ctrl button{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--mute);padding:8px 14px;border-radius:999px;transition:.25s;border:0;background:none;cursor:pointer}
-nav a:hover,nav a.on,.ctrl button:hover{color:var(--onaccent);background:var(--blue)}
-.ctrl .lang-btn b{color:var(--ink);font-weight:600}
-.ctrl button:hover b{color:inherit}
-.ctrl .theme-btn{font-size:14px;width:36px;padding:8px 0}
+nav a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--mute);padding:8px 14px;border-radius:999px;transition:.25s}
+nav a:hover,nav a.on{color:var(--onaccent);background:var(--blue)}
+.ctrl{gap:8px;align-items:center;padding:5px}
+.seg{position:relative;display:flex;background:var(--bg);border:1px solid var(--line2);border-radius:999px;padding:3px}
+.seg button{position:relative;z-index:1;width:44px;font-family:var(--mono);font-size:13px;font-weight:600;padding:7px 0;border:0;background:none;color:var(--mute);cursor:pointer;border-radius:999px;transition:color .3s}
+.seg button:hover{color:var(--ink)}
+.seg button.on{color:var(--onaccent)}
+.seg-pill{position:absolute;top:3px;bottom:3px;left:3px;width:44px;border-radius:999px;background:var(--blue);box-shadow:0 4px 14px -4px rgba(77,163,255,.7);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.seg[data-l="sl"] .seg-pill{transform:translateX(44px)}
+.switch{position:relative;width:66px;height:36px;flex:none;border-radius:999px;border:1px solid var(--line2);background:var(--bg);cursor:pointer;padding:0;transition:border-color .3s}
+.switch:hover{border-color:var(--blue)}
+.switch .ico{position:absolute;top:50%;transform:translateY(-50%);font-size:14px;line-height:1;color:var(--dim)}
+.switch .sun{left:10px}.switch .moon{right:11px}
+.switch .knob{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:15px;color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--green));box-shadow:0 2px 10px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.switch[data-mode="dark"] .knob{transform:translateX(30px)}
 
 /* HERO */
 #hero{min-height:100vh;display:flex;align-items:center;padding:0;overflow:hidden}
@@ -340,8 +351,8 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   <a href="#about" data-i18n="nav1">About</a><a href="#journey" data-i18n="nav2">Journey</a><a href="#how" data-i18n="nav6">How I work</a><a href="#kit" data-i18n="nav3">Toolkit</a><a href="#education" data-i18n="nav4">Passport</a><a href="#contact" data-i18n="nav5">Contact</a>
 </nav>
 <div class="ctrl">
-  <button class="lang-btn" id="langBtn" aria-label="Switch language"><b>EN</b> · SL</button>
-  <button class="theme-btn" id="themeBtn" aria-label="Switch light or dark mode">☾</button>
+  <div class="seg" id="langSeg" role="group" aria-label="Language"><span class="seg-pill" aria-hidden="true"></span><button data-l="en" class="on" aria-pressed="true">EN</button><button data-l="sl" aria-pressed="false">SL</button></div>
+  <button class="switch" id="themeBtn" role="switch" aria-checked="true" aria-label="Dark mode" data-mode="dark"><span class="ico sun" aria-hidden="true">☀</span><span class="ico moon" aria-hidden="true">☾</span><span class="knob" aria-hidden="true">☾</span></button>
 </div>
 
 <!-- HERO -->
@@ -610,16 +621,22 @@ const onLang = [];   // modules register a re-render here
 function setLang(l) {
   LANG = l; document.documentElement.lang = l; store.set('cv-lang', l); document.title = T().title;
   $$('[data-i18n]').forEach(el => { const v = (l === 'sl' ? SL : EN)[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
-  $('#langBtn').innerHTML = l === 'sl' ? 'EN · <b>SL</b>' : '<b>EN</b> · SL';
+  $('#langSeg').dataset.l = l;
+  $$('#langSeg button').forEach(b => { const on = b.dataset.l === l; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
   onLang.forEach(fn => fn());
 }
-$('#langBtn').addEventListener('click', () => setLang(LANG === 'en' ? 'sl' : 'en'));
+$$('#langSeg button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.l)));
 
 /* ---------- THEME ---------- */
 let STAR = '238,241,246', LINKA = .12;
 function readTheme() { const cs = getComputedStyle(document.documentElement); STAR = cs.getPropertyValue('--star').trim(); LINKA = +cs.getPropertyValue('--link-a') || .12; }
 function isLight() { return document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'light' : matchMedia('(prefers-color-scheme: light)').matches; }
-function paintThemeBtn() { const b = $('#themeBtn'); b.textContent = isLight() ? '☾' : '☀'; b.title = isLight() ? T().dark : T().light; $('meta[name=theme-color]').content = isLight() ? '#f5f7fb' : '#07090f'; }
+function paintThemeBtn() {
+  const b = $('#themeBtn'), light = isLight();
+  b.dataset.mode = light ? 'light' : 'dark'; b.setAttribute('aria-checked', !light); b.setAttribute('aria-label', T().dark);
+  b.title = light ? T().dark : T().light; $('.knob', b).textContent = light ? '☀' : '☾';
+  $('meta[name=theme-color]').content = light ? '#f5f7fb' : '#07090f';
+}
 $('#themeBtn').addEventListener('click', () => {
   const t = isLight() ? 'dark' : 'light'; document.documentElement.dataset.theme = t; store.set('cv-theme', t); readTheme(); paintThemeBtn();
 });
