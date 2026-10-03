@@ -231,16 +231,19 @@ nav a.on::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0
 .star{position:absolute;transform:translate(-50%,-50%);font-size:clamp(14px,1.8vw,19px);color:var(--mute);cursor:default;padding:6px 10px;transition:color .3s,text-shadow .3s;white-space:nowrap}
 .star::before{content:"";position:absolute;left:50%;top:-6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--ink);box-shadow:0 0 12px var(--blue)}
 .star:hover,.star.on{color:var(--blue);text-shadow:0 0 18px rgba(77,163,255,.5)}
-.interests{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px;display:flex;gap:20px 32px;align-items:center;flex-wrap:wrap}
-.interests h3{flex:none;min-width:190px;font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.interests{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px}
+.interests h3{font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:20px}
 .interests h3 em{font-style:italic;font-weight:500;color:var(--blue)}
-.int-chips{flex:1;display:flex;flex-wrap:wrap;gap:10px}
-.int-chips span{--i:0;padding:9px 16px;border-radius:999px;font-size:15px;color:var(--ink);border:1px solid transparent;
-  background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(90deg,var(--blue),var(--green)) border-box;
-  opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i) * 55ms)}
-.interests.in .int-chips span{opacity:1;transform:none}
-.interests.in .int-chips span:hover{transform:translateY(-3px);transition-delay:0s}
-.int-chips span.more{background:none;border:1px dashed var(--line2);color:var(--mute)}
+.int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px}
+.int{--i:0;display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 10px 14px;border-radius:14px;background:var(--bg);border:1px solid var(--line);text-align:center;font-size:14px;color:var(--ink);
+  opacity:0;transform:translateY(12px);transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1),border-color .25s;transition-delay:calc(var(--i) * 50ms)}
+.interests.in .int{opacity:1;transform:none}
+.interests.in .int:hover{transform:translateY(-4px);border-color:var(--blue);transition-delay:0s}
+.int svg{width:40px;height:40px;padding:9px;border-radius:12px;fill:none;stroke:var(--blue);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;
+  background:linear-gradient(135deg,rgba(77,163,255,.16),rgba(62,230,160,.16))}
+.int:nth-child(even) svg{stroke:var(--green)}
+.int.more{border-style:dashed;color:var(--mute)}
+.int.more svg{stroke:var(--mute);background:none}
 
 /* DEPARTURE BOARD — stays dark in both themes, like a real one */
 #contact{padding-bottom:64px}
@@ -349,7 +352,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
 
   #printValues span{display:inline-block;margin:0 6px 6px 0;padding:4px 12px;border-radius:999px;border:1px solid var(--line2);color:var(--blue);font-size:10pt}
   #printValues span:nth-child(even){color:var(--green)}
-  .interests{margin-top:8px;padding:10px 14px}.interests h3{font-size:12pt;min-width:0}.int-chips span{opacity:1!important;transform:none!important;padding:3px 10px;font-size:9pt}
+  .interests{margin-top:8px;padding:10px 14px}.interests h3{font-size:12pt;margin-bottom:8px}.int-grid{grid-template-columns:repeat(7,1fr);gap:6px}.int{opacity:1!important;transform:none!important;padding:6px 4px;font-size:8pt;gap:4px}.int svg{width:26px;height:26px;padding:5px}
 
   .board{break-inside:avoid;padding:16px}
   .board .head,.brow{grid-template-columns:70px 1fr 110px}
@@ -537,7 +540,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
     <h2 data-i18n="h2d">The stars I <em>navigate</em> by.</h2>
     <div class="sky" id="vsky"><canvas id="cons" aria-hidden="true"></canvas></div>
     <p class="print-only" id="printValues"></p>
-    <div class="interests" data-i18n="int"><h3>Curious <em>about</em></h3><div class="int-chips"><span>people</span><span>psychology</span><span>AI</span><span>history</span><span>cultures</span><span>travel</span><span>nature</span><span>consciousness</span><span>technology</span><span>patterns</span><span>systems</span><span>science</span><span class="more">and more…</span></div></div>
+    <div class="interests"><h3 data-i18n="intT">My <em>interests</em></h3><div class="int-grid"><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c3 .2 5.5 2.6 5.5 5.8"/></svg><span data-i18n="i1">people</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 0-7 7c0 2.2 1 3.6 2 4.6V21h7v-3h2a2 2 0 0 0 2-2v-2l1.6-.6L17.7 10A7 7 0 0 0 12 3z"/><circle cx="11.5" cy="10" r="2"/></svg><span data-i18n="i2">psychology</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3l1.8 4.7 4.7 1.8-4.7 1.8L11 16l-1.8-4.7-4.7-1.8 4.7-1.8z"/><path d="M18.5 14l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span data-i18n="i3">AI</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/></svg><span data-i18n="i4">history</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span data-i18n="i5">cultures</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span data-i18n="i6">travel</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20c0-8.5 5.5-15 15-15 0 10-6 15-14.5 15"/><path d="M5 20c3-4.5 6.5-7.5 10.5-9.5"/></svg><span data-i18n="i7">nature</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span data-i18n="i8">consciousness</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg><span data-i18n="i9">technology</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><circle cx="17" cy="17" r="3.5"/><path d="M17 3.5l3.5 7h-7zM7 13.5l3.5 7h-7z"/></svg><span data-i18n="i10">patterns</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4M12 11.5 6.6 17M12 11.5l5.4 5.5"/></svg><span data-i18n="i11">systems</span></div><div class="int"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1.6"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg><span data-i18n="i12">science</span></div><div class="int more"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg><span data-i18n="i13">and more…</span></div></div></div>
   </div>
 </section>
 
@@ -659,7 +662,6 @@ const SL = {
  "l2": "<b>Angleščina</b><br><span>Poslovna raven</span>",
  "e5": "06 · Vrednote",
  "h2d": "Zvezde, ki mi <em>kažejo</em> pot.",
- "int": "<h3>Zanimajo <em>me</em></h3><div class=\"int-chips\"><span>ljudje</span><span>psihologija</span><span>AI</span><span>zgodovina</span><span>kulture</span><span>potovanja</span><span>narava</span><span>zavest</span><span>tehnologija</span><span>vzorci</span><span>sistemi</span><span>znanost</span><span class=\"more\">in še več …</span></div>",
  "e6": "07 · Kontakt",
  "h2e": "Naslednji <em>odhod</em>?",
  "bh1": "ČAS",
@@ -670,7 +672,21 @@ const SL = {
  "bs3": "ODLETEL",
  "copy": "Kopiraj e-naslov",
  "pdf": "↓ Shrani kot PDF",
- "egg": "pst, vtipkajte <kbd>launch</kbd>"
+ "egg": "pst, vtipkajte <kbd>launch</kbd>",
+ "intT": "Moji <em>interesi</em>",
+ "i1": "ljudje",
+ "i2": "psihologija",
+ "i3": "AI",
+ "i4": "zgodovina",
+ "i5": "kulture",
+ "i6": "potovanja",
+ "i7": "narava",
+ "i8": "zavest",
+ "i9": "tehnologija",
+ "i10": "vzorci",
+ "i11": "sistemi",
+ "i12": "znanost",
+ "i13": "in še več …"
 };
 const TXT = {
   en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', light: 'Light mode', dark: 'Dark mode',
@@ -824,7 +840,7 @@ io('[data-count]', el => {
   (function f(t) { const k = Math.min(1, (t - t0) / dur); el.firstChild.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
 });
 io('.pass', el => el.classList.add('in'), .15);
-const numberChips = () => $$('.int-chips span').forEach((c, i) => c.style.setProperty('--i', i));
+const numberChips = () => $$('.int-grid .int').forEach((c, i) => c.style.setProperty('--i', i));
 numberChips(); onLang.push(numberChips);
 io('.interests', el => el.classList.add('in'), .3);
 io('.stamp', el => setTimeout(() => el.classList.add('in'), $$('.stamp').indexOf(el) * 180), .4);
