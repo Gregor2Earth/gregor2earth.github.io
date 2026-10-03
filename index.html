@@ -231,10 +231,10 @@ nav a.on::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0
 .star{position:absolute;transform:translate(-50%,-50%);font-size:clamp(14px,1.8vw,19px);color:var(--mute);cursor:default;padding:6px 10px;transition:color .3s,text-shadow .3s;white-space:nowrap}
 .star::before{content:"";position:absolute;left:50%;top:-6px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--ink);box-shadow:0 0 12px var(--blue)}
 .star:hover,.star.on{color:var(--blue);text-shadow:0 0 18px rgba(77,163,255,.5)}
-.interests{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px;display:flex;gap:20px 32px;align-items:center;flex-wrap:wrap}
-.interests h3{flex:none;min-width:190px;font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.interests{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 30px 34px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.interests h3{font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1}
 .interests h3 em{font-style:italic;font-weight:500;color:var(--blue)}
-.int-chips{flex:1;display:flex;flex-wrap:wrap;gap:10px}
+.int-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:900px}
 .int-chips span{--i:0;padding:9px 16px;border-radius:999px;font-size:15px;color:var(--ink);border:1px solid transparent;
   background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(90deg,var(--blue),var(--green)) border-box;
   opacity:0;transform:translateY(10px);transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i) * 55ms)}
@@ -537,7 +537,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
     <h2 data-i18n="h2d">The stars I <em>navigate</em> by.</h2>
     <div class="sky" id="vsky"><canvas id="cons" aria-hidden="true"></canvas></div>
     <p class="print-only" id="printValues"></p>
-    <div class="interests" data-i18n="int"><h3>Curious <em>about</em></h3><div class="int-chips"><span>people</span><span>psychology</span><span>AI</span><span>history</span><span>cultures</span><span>travel</span><span>nature</span><span>consciousness</span><span>technology</span><span>patterns</span><span>systems</span><span>science</span><span class="more">and more…</span></div></div>
+    <div class="interests" data-i18n="int"><h3>My <em>interests</em></h3><div class="int-chips"><span>people</span><span>psychology</span><span>AI</span><span>history</span><span>cultures</span><span>travel</span><span>nature</span><span>consciousness</span><span>technology</span><span>patterns</span><span>systems</span><span>science</span><span class="more">and more…</span></div></div>
   </div>
 </section>
 
@@ -659,7 +659,7 @@ const SL = {
  "l2": "<b>Angleščina</b><br><span>Poslovna raven</span>",
  "e5": "06 · Vrednote",
  "h2d": "Zvezde, ki mi <em>kažejo</em> pot.",
- "int": "<h3>Zanimajo <em>me</em></h3><div class=\"int-chips\"><span>ljudje</span><span>psihologija</span><span>AI</span><span>zgodovina</span><span>kulture</span><span>potovanja</span><span>narava</span><span>zavest</span><span>tehnologija</span><span>vzorci</span><span>sistemi</span><span>znanost</span><span class=\"more\">in še več …</span></div>",
+ "int": "<h3>Moji <em>interesi</em></h3><div class=\"int-chips\"><span>ljudje</span><span>psihologija</span><span>AI</span><span>zgodovina</span><span>kulture</span><span>potovanja</span><span>narava</span><span>zavest</span><span>tehnologija</span><span>vzorci</span><span>sistemi</span><span>znanost</span><span class=\"more\">in še več …</span></div>",
  "e6": "07 · Kontakt",
  "h2e": "Naslednji <em>odhod</em>?",
  "bh1": "ČAS",
