@@ -139,11 +139,18 @@ nav a.on::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0
 #about .big .w{opacity:.12;transition:opacity .25s}
 #about .big .w.lit{opacity:1}
 #about .big .hl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:56px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.stat{background:var(--bg);padding:30px 26px}
-.stat b{display:block;font-size:clamp(40px,5vw,60px);font-weight:600;letter-spacing:-.04em;line-height:1}
-.stat b sup{font-size:.4em;color:var(--blue);vertical-align:top;margin-left:4px}
-.stat span{font-size:14px;color:var(--mute);display:block;margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.stat{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 8px}
+.stat .ring{position:relative;width:150px;height:150px;display:grid;place-items:center}
+.stat svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.stat circle{fill:none;stroke-width:5}
+.stat .track{stroke:var(--line)}
+.stat .arc{stroke:url(#ringGrad);stroke-linecap:round;stroke-dasharray:440;stroke-dashoffset:440;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)}
+.stat.in .arc{stroke-dashoffset:110}
+.stat:nth-of-type(2) .arc{transition-delay:.12s}.stat:nth-of-type(3) .arc{transition-delay:.24s}.stat:nth-of-type(4) .arc{transition-delay:.36s}
+.stat b{display:block;font-size:46px;font-weight:600;line-height:1;letter-spacing:-.02em}
+.stat .u{display:block;font:600 11px var(--mono);color:var(--green);text-transform:uppercase;letter-spacing:.12em;margin-top:6px}
+.stat .lbl{margin-top:16px;color:var(--mute);font-size:14px;line-height:1.45;max-width:210px}
 
 /* JOURNEY */
 .legs{display:flex;gap:10px;flex-wrap:wrap;margin:-16px 0 40px}
@@ -322,7 +329,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   #about .big{font-size:12.5pt}
   #about .big .w{opacity:1}
   .stats{margin-top:12px;grid-template-columns:repeat(4,1fr)}
-  .stat{padding:10px 12px}.stat b{font-size:20pt}.stat span{font-size:8.5pt}
+  .stat{padding:4px}.stat .ring{width:96px;height:96px}.stat b{font-size:20pt}.stat .u{font-size:7pt}.stat .lbl{font-size:8.5pt;margin-top:8px}.stat .arc{stroke-dashoffset:110!important;transition:none}
 
   .journey{padding-left:0}
   .pass{margin-bottom:10px;break-inside:avoid;border-left:4px solid var(--blue)}
@@ -394,11 +401,11 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   <div class="wrap">
     <div class="eyebrow" data-i18n="e1">01 — Manifesto</div>
     <p class="big" id="manifesto" data-i18n="manifesto">I create strategic, <span class="hl">user-centric</span> solutions that lift the overall user experience. I take ideas with a <span class="hl">purpose</span> and make them real — in turbulent, multi-stakeholder environments, with steady delivery, clear decisions, and a <span class="hl">UX-first</span> mindset. AI is my <span class="hl">co-pilot</span> — from the first idea to a working prototype to a shipped product.</p>
-    <div class="stats">
-      <div class="stat"><b data-count="12">0<sup data-i18n="s1u">yrs</sup></b><span data-i18n="s1">in travel, mobility &amp; user experience</span></div>
-      <div class="stat"><b data-count="150">0<sup data-i18n="s2u">vehicles</sup></b><span data-i18n="s2">luxury fleet managed &amp; optimised</span></div>
-      <div class="stat"><b data-count="9">0<sup data-i18n="s3u">products</sup></b><span data-i18n="s3">in the Nevron &amp; Streamron suite I manage</span></div>
-      <div class="stat"><b data-count="5">0<sup data-i18n="s4u">AI tools</sup></b><span data-i18n="s4">in my daily workflow</span></div>
+    <div class="stats"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ee6a0"/><stop offset="1" stop-color="#4da3ff"/></linearGradient></defs></svg>
+      <div class="stat"><div class="ring"><svg viewBox="0 0 150 150" aria-hidden="true"><circle class="track" cx="75" cy="75" r="70"/><circle class="arc" cx="75" cy="75" r="70"/></svg><div><b data-count="12">0</b><span class="u" data-i18n="s1u">yrs</span></div></div><span class="lbl" data-i18n="s1">in travel, mobility &amp; user experience</span></div>
+      <div class="stat"><div class="ring"><svg viewBox="0 0 150 150" aria-hidden="true"><circle class="track" cx="75" cy="75" r="70"/><circle class="arc" cx="75" cy="75" r="70"/></svg><div><b data-count="150">0</b><span class="u" data-i18n="s2u">vehicles</span></div></div><span class="lbl" data-i18n="s2">luxury fleet managed &amp; optimised</span></div>
+      <div class="stat"><div class="ring"><svg viewBox="0 0 150 150" aria-hidden="true"><circle class="track" cx="75" cy="75" r="70"/><circle class="arc" cx="75" cy="75" r="70"/></svg><div><b data-count="9">0</b><span class="u" data-i18n="s3u">products</span></div></div><span class="lbl" data-i18n="s3">in the Nevron &amp; Streamron suite I manage</span></div>
+      <div class="stat"><div class="ring"><svg viewBox="0 0 150 150" aria-hidden="true"><circle class="track" cx="75" cy="75" r="70"/><circle class="arc" cx="75" cy="75" r="70"/></svg><div><b data-count="5">0</b><span class="u" data-i18n="s4u">AI tools</span></div></div><span class="lbl" data-i18n="s4">in my daily workflow</span></div>
     </div>
   </div>
 </section>
@@ -824,6 +831,7 @@ io('[data-count]', el => {
   (function f(t) { const k = Math.min(1, (t - t0) / dur); el.firstChild.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); })(t0);
 });
 io('.pass', el => el.classList.add('in'), .15);
+io('.stat', el => el.classList.add('in'), .4);
 const numberChips = () => $$('.int-chips span').forEach((c, i) => c.style.setProperty('--i', i));
 numberChips(); onLang.push(numberChips);
 io('.interests', el => el.classList.add('in'), .3);
