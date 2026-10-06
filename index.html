@@ -268,7 +268,6 @@ nav a.on::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0
 .btn.primary:hover{box-shadow:0 14px 40px -10px rgba(77,163,255,.6)}
 footer{border-top:1px solid var(--line);padding:30px 0;color:var(--dim);font-family:var(--mono);font-size:12px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-footer a.alt{color:var(--blue);text-decoration:none}footer a.alt:hover{text-decoration:underline}
 kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--mute)}
 
 #toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:13px;padding:12px 20px;border-radius:999px;transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:60}
@@ -572,7 +571,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   </div>
 </section>
 
-<footer><div class="wrap"><span>© 2026 Gregor Skok · Ljubljana</span><a class="alt" href="zen.html" data-i18n="alt">◐ Zen version</a><span data-i18n="egg">psst — type <kbd>launch</kbd></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Gregor Skok · Ljubljana</span><span data-i18n="egg">psst — type <kbd>launch</kbd></span></div></footer>
 <div id="toast" role="status"></div>
 
 <script>
@@ -677,8 +676,7 @@ const SL = {
  "bs3": "ODLETEL",
  "copy": "Kopiraj e-naslov",
  "pdf": "↓ Shrani kot PDF",
- "egg": "pst, vtipkajte <kbd>launch</kbd>",
- "alt": "◐ Zen različica"
+ "egg": "pst, vtipkajte <kbd>launch</kbd>"
 };
 const TXT = {
   en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', light: 'Light mode', dark: 'Dark mode',
