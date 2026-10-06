@@ -1,4 +1,4 @@
-// Builds zen.html from index.html: same content and scripts, a calm stylesheet, one section per tab.
+// Builds zen.html from index.html: same content and scripts, a calm stylesheet, one scrolling column.
 // Run after every content change:  node build-zen.js
 const fs = require('fs'), path = require('path');
 const SRC = path.join(__dirname, 'index.html'), OUT = path.join(__dirname, 'zen.html');
@@ -68,18 +68,15 @@ a{color:inherit}
 .pill{font-size:13px;color:var(--mute);letter-spacing:.04em}
 .pill i{font-style:normal;color:var(--accent)}
 
-/* tabs */
-.tabs{position:sticky;top:0;z-index:30;background:var(--navbg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.tabs .wrap{max-width:960px;display:flex;justify-content:center;gap:2px;position:relative}
-.tabs button{border:0;background:none;font:400 14px var(--sans);letter-spacing:.06em;color:var(--mute);padding:18px 14px;cursor:pointer;transition:color .3s;white-space:nowrap}
-.tabs button:hover,.tabs button[aria-selected="true"]{color:var(--ink)}
-.tabs button:focus-visible{outline:1px solid var(--accent);outline-offset:-6px;border-radius:6px}
-.tabs .ink{position:absolute;bottom:-1px;height:1px;background:var(--ink);transition:left .5s cubic-bezier(.2,.8,.2,1),width .5s cubic-bezier(.2,.8,.2,1)}
+/* version tabs (Rocket | Zen) */
+.vswitch{position:fixed;top:16px;left:16px;z-index:45;display:flex;border:1px solid var(--line2);border-radius:999px;padding:2px;background:var(--bg)}
+.vswitch a{font:400 13px var(--sans);letter-spacing:.04em;text-decoration:none;color:var(--mute);padding:5px 14px;border-radius:999px;transition:color .3s,background .3s;white-space:nowrap}
+.vswitch a:hover{color:var(--ink)}
+.vswitch a.on{background:var(--ink);color:var(--bg)}
 
-/* sections: one at a time */
-section{display:none;padding:64px 0 104px}
-section.active{display:block;animation:zin .8s ease both}
-@keyframes zin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* sections: one calm scrolling column, separated by thin lines */
+section{padding:0 0 88px}
+section:not(#hero) .wrap{border-top:1px solid var(--line);padding-top:72px}
 .eyebrow{font:400 11px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;text-align:center}
 h2{font-size:clamp(26px,3.6vw,36px);font-weight:300;line-height:1.3;margin-bottom:52px;text-align:center}
 h2 em,.serif{font-style:italic;color:var(--accent);font-weight:300}
@@ -177,17 +174,15 @@ kbd{border:1px solid var(--line2);border-radius:3px;padding:0 5px}
 @media (max-width:700px){
   #hero{padding-top:84px}
   .ctrl{top:10px;right:10px}
-  .tabs .wrap{justify-content:flex-start;overflow-x:auto;scrollbar-width:none}
-  .tabs .wrap::-webkit-scrollbar{display:none}
-  .tabs button{padding:16px 10px}
+  .vswitch{top:10px;left:10px}
   .stats{grid-template-columns:1fr 1fr;row-gap:32px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
 }
 @media print{
-  .tabs,.ctrl,footer,.cta{display:none!important}
-  section{display:block!important;padding:14px 0;animation:none}
+  .vswitch,.ctrl,footer,.cta{display:none!important}
+  section{padding:14px 0}section:not(#hero) .wrap{padding-top:14px}
   #hero{padding:0 0 14px}
   .stat .arc{stroke-dashoffset:110!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -203,57 +198,8 @@ s = s.slice(0, a) + '<style>' + CSS + s.slice(b);
 R('<title>Gregor Skok — Product Creator</title>', '<title>Gregor Skok — Product Creator · Zen</title>');
 R('<link rel="canonical" href="https://gregor2earth.github.io/">', '<link rel="canonical" href="https://gregor2earth.github.io/zen.html">');
 R('<meta property="og:url" content="https://gregor2earth.github.io/">', '<meta property="og:url" content="https://gregor2earth.github.io/zen.html">');
-R('<a class="alt" href="zen.html" data-i18n="alt">◐ Zen version</a>', '<a class="alt" href="index.html" data-i18n="alt">◐ Classic version</a>');
-R('"alt": "◐ Zen različica"', '"alt": "◐ Klasična različica"');
-
-// 3. tab bar after the header
-R('<!-- ABOUT -->', '<div class="tabs" id="tabs"><div class="wrap" role="tablist" aria-label="Sections"></div></div>\n\n<!-- ABOUT -->');
-
-// 4. tab logic, appended to the main script
-const TABS = `
-/* ---------- zen: one section per tab ---------- */
-(() => {
-  const ids = ['about', 'journey', 'how', 'kit', 'education', 'values', 'contact'];
-  const L = { en: ['About', 'Journey', 'How I work', 'Skills', 'Education', 'Values', 'Contact'],
-              sl: ['O meni', 'Pot', 'Kako delam', 'Veščine', 'Izobrazba', 'Vrednote', 'Kontakt'] };
-  const bar = $('#tabs .wrap'), ink = document.createElement('span'); ink.className = 'ink';
-  const btns = ids.map(id => {
-    const b = document.createElement('button');
-    b.setAttribute('role', 'tab'); b.id = 'tab-' + id; b.setAttribute('aria-controls', id);
-    b.addEventListener('click', () => show(id, true)); bar.append(b); return b;
-  });
-  bar.append(ink);
-  ids.forEach(id => { const p = $('#' + id); p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', 'tab-' + id); });
-  const label = () => btns.forEach((b, k) => b.textContent = L[LANG][k]);
-  function place() {
-    const b = btns.find(x => x.getAttribute('aria-selected') === 'true'); if (!b) return;
-    const pad = parseFloat(getComputedStyle(b).paddingLeft) || 0;
-    ink.style.left = b.offsetLeft + pad + 'px'; ink.style.width = b.offsetWidth - 2 * pad + 'px';
-  }
-  function show(id, user) {
-    if (!ids.includes(id)) id = 'about';
-    ids.forEach((x, k) => { const on = x === id; $('#' + x).classList.toggle('active', on); btns[k].setAttribute('aria-selected', on); btns[k].tabIndex = on ? 0 : -1; });
-    place();
-    if (user) {
-      history.replaceState(null, '', '#' + id);
-      const t = $('#tabs').offsetTop; if (scrollY > t) scrollTo({ top: t, behavior: RM ? 'auto' : 'smooth' });
-      btns[ids.indexOf(id)].scrollIntoView({ block: 'nearest', inline: 'center' });
-    }
-  }
-  bar.addEventListener('keydown', e => {
-    const k = btns.indexOf(document.activeElement); if (k < 0) return;
-    const n = { ArrowRight: (k + 1) % btns.length, ArrowLeft: (k - 1 + btns.length) % btns.length, Home: 0, End: btns.length - 1 }[e.key];
-    if (n === undefined) return; e.preventDefault(); btns[n].focus(); show(ids[n], true);
-  });
-  label(); onLang.push(() => { label(); requestAnimationFrame(place); });
-  addEventListener('resize', place);
-  show(location.hash.slice(1), false);
-  document.fonts && document.fonts.ready.then(place);
-})();
-`;
-const end = s.lastIndexOf('onScroll();\n</script>');
-if (end < 0) throw new Error('build-zen: script end not found');
-s = s.slice(0, end) + TABS + s.slice(end);
+R('<a href="index.html" role="tab" aria-selected="true" class="on" data-i18n="v1">', '<a href="index.html" role="tab" aria-selected="false" data-i18n="v1">');
+R('<a href="zen.html" role="tab" aria-selected="false" data-i18n="v2">', '<a href="zen.html" role="tab" aria-selected="true" class="on" data-i18n="v2">');
 
 fs.writeFileSync(OUT, s);
 console.log('zen.html written (' + s.length + ' bytes)');

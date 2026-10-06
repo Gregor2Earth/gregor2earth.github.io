@@ -82,6 +82,10 @@ h2 em,.serif{font-family:var(--serif);font-style:italic;font-weight:500;letter-s
 nav,.ctrl{position:fixed;top:18px;z-index:40;display:flex;gap:4px;padding:6px;border:1px solid var(--line);background:var(--navbg);backdrop-filter:blur(14px);border-radius:999px}
 nav{left:50%;transform:translateX(-50%)}
 .ctrl{right:18px;z-index:45}
+.vswitch{position:fixed;top:18px;left:18px;z-index:45;display:flex;gap:4px;padding:5px;border:1px solid var(--line);background:var(--navbg);backdrop-filter:blur(14px);border-radius:999px}
+.vswitch a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--mute);padding:8px 14px;border-radius:999px;transition:.25s;white-space:nowrap}
+.vswitch a:hover{color:var(--ink)}
+.vswitch a.on{color:var(--onaccent);background:var(--blue)}
 nav{padding:6px 6px 16px;border-radius:24px}
 nav a{position:relative;font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--mute);padding:8px 14px;border-radius:999px;transition:.25s}
 nav a:hover,nav a.on{color:var(--onaccent);background:var(--blue)}
@@ -268,7 +272,6 @@ nav a.on::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0
 .btn.primary:hover{box-shadow:0 14px 40px -10px rgba(77,163,255,.6)}
 footer{border-top:1px solid var(--line);padding:30px 0;color:var(--dim);font-family:var(--mono);font-size:12px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-footer a.alt{color:var(--blue);text-decoration:none}footer a.alt:hover{text-decoration:underline}
 kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--mute)}
 
 #toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:13px;padding:12px 20px;border-radius:999px;transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:60}
@@ -306,7 +309,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   :root,:root[data-theme]{--pillbg:#fff;--bg:#fff;--bg2:#fff;--card:#fff;--line:#dfe6f0;--line2:#c8d3e3;--ink:#0f172a;--body:#334155;--mute:#4b5a70;--dim:#7b889c;--blue:#1f6fd6;--green:#0b9a68;--sky:#0284c7;--teal:#0d9488;--onaccent:#fff}
   body{background:#fff;font-size:10.5pt}
-  nav,.ctrl,#progress,#glow,#sky,.scroll,.marquee,#values .sky,.cta,footer,#toast,#route,.legs{display:none!important}
+  nav,.ctrl,.vswitch,#progress,#glow,#sky,.scroll,.marquee,#values .sky,.cta,footer,#toast,#route,.legs{display:none!important}
   .print-only{display:block!important}
   section{padding:10px 0}
   .wrap{padding:0}
@@ -375,6 +378,9 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   <a href="#about" data-i18n="nav1">About</a><a href="#journey" data-i18n="nav2">Journey</a><a href="#how" data-i18n="nav6">How I work</a><a href="#kit" data-i18n="nav3">Toolkit</a><a href="#education" data-i18n="nav4">Passport</a><a href="#contact" data-i18n="nav5">Contact</a>
   <span class="nav-track" aria-hidden="true"><i id="navFill"></i></span>
 </nav>
+<div class="vswitch" role="tablist" aria-label="Version">
+  <a href="index.html" role="tab" aria-selected="true" class="on" data-i18n="v1">🚀 Rocket</a><a href="zen.html" role="tab" aria-selected="false" data-i18n="v2">◐ Zen</a>
+</div>
 <div class="ctrl">
   <div class="seg" id="langSeg" role="group" aria-label="Language"><span class="seg-pill" aria-hidden="true"></span><button data-l="en" class="on" aria-pressed="true">EN</button><button data-l="sl" aria-pressed="false">SL</button></div>
   <button class="switch" id="themeBtn" role="switch" aria-checked="true" aria-label="Dark mode" data-mode="dark"><span class="ico sun" aria-hidden="true">☀</span><span class="ico moon" aria-hidden="true">☾</span><span class="knob" aria-hidden="true">☾</span></button>
@@ -572,7 +578,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   </div>
 </section>
 
-<footer><div class="wrap"><span>© 2026 Gregor Skok · Ljubljana</span><a class="alt" href="zen.html" data-i18n="alt">◐ Zen version</a><span data-i18n="egg">psst — type <kbd>launch</kbd></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Gregor Skok · Ljubljana</span><span data-i18n="egg">psst — type <kbd>launch</kbd></span></div></footer>
 <div id="toast" role="status"></div>
 
 <script>
@@ -678,7 +684,8 @@ const SL = {
  "copy": "Kopiraj e-naslov",
  "pdf": "↓ Shrani kot PDF",
  "egg": "pst, vtipkajte <kbd>launch</kbd>",
- "alt": "◐ Zen različica"
+ "v1": "🚀 Raketa",
+ "v2": "◐ Zen"
 };
 const TXT = {
   en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', light: 'Light mode', dark: 'Dark mode',
@@ -700,6 +707,11 @@ function setLang(l) {
   onLang.forEach(fn => fn());
 }
 $$('#langSeg button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.l)));
+$$('.vswitch a:not(.on)').forEach(a => a.addEventListener('click', e => {
+  let cur = '';
+  $$('section[id]').forEach(sec => { if (sec.id !== 'hero' && sec.getBoundingClientRect().top < innerHeight * .4) cur = sec.id; });
+  if (cur) { e.preventDefault(); location.href = a.getAttribute('href') + '#' + cur; }
+}));
 
 /* ---------- THEME ---------- */
 let STAR = '238,241,246', LINKA = .12;
