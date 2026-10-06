@@ -93,15 +93,18 @@ a{color:inherit}
 .pill{font-size:13px;color:var(--mute);letter-spacing:.04em}
 .pill i{font-style:normal;color:var(--accent)}
 
-/* version tabs (Rocket | Zen) */
-.vswitch{position:fixed;top:16px;left:16px;z-index:45;display:flex;border:1px solid var(--line2);border-radius:999px;padding:2px;background:var(--bg)}
-.vswitch a{font:400 13px var(--sans);letter-spacing:.04em;text-decoration:none;color:var(--mute);padding:5px 14px;border-radius:999px;transition:color .3s,background .3s;white-space:nowrap}
-.vswitch a:hover{color:var(--ink)}
-.vswitch a.on{background:var(--ink);color:var(--bg)}
+/* tabs */
+.tabs{position:sticky;top:0;z-index:30;background:var(--navbg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.tabs .wrap{max-width:960px;display:flex;justify-content:center;gap:2px;position:relative}
+.tabs button{border:0;background:none;font:400 14px var(--sans);letter-spacing:.06em;color:var(--mute);padding:18px 14px;cursor:pointer;transition:color .3s;white-space:nowrap}
+.tabs button:hover,.tabs button[aria-selected="true"]{color:var(--ink)}
+.tabs button:focus-visible{outline:1px solid var(--accent);outline-offset:-6px;border-radius:6px}
+.tabs .ink{position:absolute;bottom:-1px;height:1px;background:var(--ink);transition:left .5s cubic-bezier(.2,.8,.2,1),width .5s cubic-bezier(.2,.8,.2,1)}
 
-/* sections: one calm scrolling column, separated by thin lines */
-section{padding:0 0 88px}
-section:not(#hero) .wrap{border-top:1px solid var(--line);padding-top:72px}
+/* sections: one at a time */
+section{display:none;padding:64px 0 104px}
+section.active{display:block;animation:zin .8s ease both}
+@keyframes zin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .eyebrow{font:400 11px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;text-align:center}
 h2{font-size:clamp(26px,3.6vw,36px);font-weight:300;line-height:1.3;margin-bottom:52px;text-align:center}
 h2 em,.serif{font-style:italic;color:var(--accent);font-weight:300}
@@ -199,15 +202,17 @@ kbd{border:1px solid var(--line2);border-radius:3px;padding:0 5px}
 @media (max-width:700px){
   #hero{padding-top:84px}
   .ctrl{top:10px;right:10px}
-  .vswitch{top:10px;left:10px}
+  .tabs .wrap{justify-content:flex-start;overflow-x:auto;scrollbar-width:none}
+  .tabs .wrap::-webkit-scrollbar{display:none}
+  .tabs button{padding:16px 10px}
   .stats{grid-template-columns:1fr 1fr;row-gap:32px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
 }
 @media print{
-  .vswitch,.ctrl,footer,.cta{display:none!important}
-  section{padding:14px 0}section:not(#hero) .wrap{padding-top:14px}
+  .tabs,.ctrl,footer,.cta{display:none!important}
+  section{display:block!important;padding:14px 0;animation:none}
   #hero{padding:0 0 14px}
   .stat .arc{stroke-dashoffset:110!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -222,9 +227,6 @@ kbd{border:1px solid var(--line2);border-radius:3px;padding:0 5px}
   <a href="#about" data-i18n="nav1">About</a><a href="#journey" data-i18n="nav2">Journey</a><a href="#how" data-i18n="nav6">How I work</a><a href="#kit" data-i18n="nav3">Toolkit</a><a href="#education" data-i18n="nav4">Passport</a><a href="#contact" data-i18n="nav5">Contact</a>
   <span class="nav-track" aria-hidden="true"><i id="navFill"></i></span>
 </nav>
-<div class="vswitch" role="tablist" aria-label="Version">
-  <a href="index.html" role="tab" aria-selected="false" data-i18n="v1">🚀 Rocket</a><a href="zen.html" role="tab" aria-selected="true" class="on" data-i18n="v2">◐ Zen</a>
-</div>
 <div class="ctrl">
   <div class="seg" id="langSeg" role="group" aria-label="Language"><span class="seg-pill" aria-hidden="true"></span><button data-l="en" class="on" aria-pressed="true">EN</button><button data-l="sl" aria-pressed="false">SL</button></div>
   <button class="switch" id="themeBtn" role="switch" aria-checked="true" aria-label="Dark mode" data-mode="dark"><span class="ico sun" aria-hidden="true">☀</span><span class="ico moon" aria-hidden="true">☾</span><span class="knob" aria-hidden="true">☾</span></button>
@@ -245,6 +247,8 @@ kbd{border:1px solid var(--line2);border-radius:3px;padding:0 5px}
     <div class="print-qr"><div><b data-i18n="qr1">Interactive version</b><br>gregor2earth.github.io</div><svg class="qr" viewBox="-2 -2 33 33" role="img" aria-label="QR code: gregor2earth.github.io"><rect x="-2" y="-2" width="33" height="33" fill="#fff"/><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM10 0h1v1h-1zM14 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM22 0h1v1h-1zM23 0h1v1h-1zM24 0h1v1h-1zM25 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM9 1h1v1h-1zM11 1h1v1h-1zM13 1h1v1h-1zM17 1h1v1h-1zM19 1h1v1h-1zM20 1h1v1h-1zM22 1h1v1h-1zM28 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM15 2h1v1h-1zM19 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM9 3h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM16 3h1v1h-1zM18 3h1v1h-1zM19 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM25 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM16 4h1v1h-1zM19 4h1v1h-1zM22 4h1v1h-1zM24 4h1v1h-1zM25 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM19 5h1v1h-1zM22 5h1v1h-1zM28 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM25 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM9 7h1v1h-1zM10 7h1v1h-1zM11 7h1v1h-1zM12 7h1v1h-1zM15 7h1v1h-1zM17 7h1v1h-1zM20 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM9 8h1v1h-1zM16 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM24 8h1v1h-1zM27 8h1v1h-1zM0 9h1v1h-1zM1 9h1v1h-1zM2 9h1v1h-1zM3 9h1v1h-1zM7 9h1v1h-1zM8 9h1v1h-1zM9 9h1v1h-1zM10 9h1v1h-1zM13 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM21 9h1v1h-1zM22 9h1v1h-1zM25 9h1v1h-1zM28 9h1v1h-1zM3 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM15 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM21 10h1v1h-1zM23 10h1v1h-1zM26 10h1v1h-1zM27 10h1v1h-1zM28 10h1v1h-1zM0 11h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM8 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM14 11h1v1h-1zM16 11h1v1h-1zM17 11h1v1h-1zM19 11h1v1h-1zM22 11h1v1h-1zM27 11h1v1h-1zM0 12h1v1h-1zM2 12h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM14 12h1v1h-1zM15 12h1v1h-1zM17 12h1v1h-1zM19 12h1v1h-1zM20 12h1v1h-1zM21 12h1v1h-1zM22 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM28 12h1v1h-1zM0 13h1v1h-1zM1 13h1v1h-1zM2 13h1v1h-1zM4 13h1v1h-1zM7 13h1v1h-1zM8 13h1v1h-1zM9 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM17 13h1v1h-1zM18 13h1v1h-1zM20 13h1v1h-1zM22 13h1v1h-1zM25 13h1v1h-1zM28 13h1v1h-1zM0 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM13 14h1v1h-1zM20 14h1v1h-1zM22 14h1v1h-1zM23 14h1v1h-1zM24 14h1v1h-1zM25 14h1v1h-1zM27 14h1v1h-1zM28 14h1v1h-1zM4 15h1v1h-1zM8 15h1v1h-1zM9 15h1v1h-1zM10 15h1v1h-1zM11 15h1v1h-1zM12 15h1v1h-1zM15 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM27 15h1v1h-1zM1 16h1v1h-1zM3 16h1v1h-1zM5 16h1v1h-1zM6 16h1v1h-1zM10 16h1v1h-1zM11 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM22 16h1v1h-1zM25 16h1v1h-1zM27 16h1v1h-1zM28 16h1v1h-1zM3 17h1v1h-1zM4 17h1v1h-1zM5 17h1v1h-1zM7 17h1v1h-1zM11 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM16 17h1v1h-1zM17 17h1v1h-1zM20 17h1v1h-1zM22 17h1v1h-1zM25 17h1v1h-1zM26 17h1v1h-1zM28 17h1v1h-1zM0 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM9 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM17 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM22 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM1 19h1v1h-1zM3 19h1v1h-1zM9 19h1v1h-1zM11 19h1v1h-1zM13 19h1v1h-1zM14 19h1v1h-1zM16 19h1v1h-1zM17 19h1v1h-1zM21 19h1v1h-1zM22 19h1v1h-1zM23 19h1v1h-1zM25 19h1v1h-1zM27 19h1v1h-1zM0 20h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM11 20h1v1h-1zM14 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM21 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM8 21h1v1h-1zM10 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM20 21h1v1h-1zM24 21h1v1h-1zM26 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM0 22h1v1h-1zM1 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM9 22h1v1h-1zM13 22h1v1h-1zM17 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM22 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM27 22h1v1h-1zM28 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM10 23h1v1h-1zM16 23h1v1h-1zM17 23h1v1h-1zM20 23h1v1h-1zM24 23h1v1h-1zM25 23h1v1h-1zM28 23h1v1h-1zM0 24h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM9 24h1v1h-1zM15 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM20 24h1v1h-1zM21 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM0 25h1v1h-1zM2 25h1v1h-1zM3 25h1v1h-1zM4 25h1v1h-1zM6 25h1v1h-1zM9 25h1v1h-1zM12 25h1v1h-1zM13 25h1v1h-1zM24 25h1v1h-1zM26 25h1v1h-1zM0 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM6 26h1v1h-1zM8 26h1v1h-1zM9 26h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM13 26h1v1h-1zM14 26h1v1h-1zM18 26h1v1h-1zM20 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM28 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM12 27h1v1h-1zM13 27h1v1h-1zM16 27h1v1h-1zM17 27h1v1h-1zM18 27h1v1h-1zM19 27h1v1h-1zM20 27h1v1h-1zM24 27h1v1h-1zM27 27h1v1h-1zM0 28h1v1h-1zM1 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM5 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h1v1h-1zM11 28h1v1h-1zM12 28h1v1h-1zM15 28h1v1h-1zM16 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM21 28h1v1h-1zM22 28h1v1h-1zM23 28h1v1h-1zM24 28h1v1h-1zM27 28h1v1h-1zM28 28h1v1h-1z" fill="#111"/></svg></div>
   <div class="scroll" data-i18n="scroll">SCROLL</div>
 </section>
+
+<div class="tabs" id="tabs"><div class="wrap" role="tablist" aria-label="Sections"></div></div>
 
 <!-- ABOUT -->
 <section id="about">
@@ -422,7 +426,7 @@ kbd{border:1px solid var(--line2);border-radius:3px;padding:0 5px}
   </div>
 </section>
 
-<footer><div class="wrap"><span>© 2026 Gregor Skok · Ljubljana</span><span data-i18n="egg">psst — type <kbd>launch</kbd></span></div></footer>
+<footer><div class="wrap"><span>© 2026 Gregor Skok · Ljubljana</span><a class="alt" href="index.html" data-i18n="alt">◐ Classic version</a><span data-i18n="egg">psst — type <kbd>launch</kbd></span></div></footer>
 <div id="toast" role="status"></div>
 
 <script>
@@ -528,8 +532,7 @@ const SL = {
  "copy": "Kopiraj e-naslov",
  "pdf": "↓ Shrani kot PDF",
  "egg": "pst, vtipkajte <kbd>launch</kbd>",
- "v1": "🚀 Raketa",
- "v2": "◐ Zen"
+ "alt": "◐ Klasična različica"
 };
 const TXT = {
   en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', light: 'Light mode', dark: 'Dark mode',
@@ -551,11 +554,6 @@ function setLang(l) {
   onLang.forEach(fn => fn());
 }
 $$('#langSeg button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.l)));
-$$('.vswitch a:not(.on)').forEach(a => a.addEventListener('click', e => {
-  let cur = '';
-  $$('section[id]').forEach(sec => { if (sec.id !== 'hero' && sec.getBoundingClientRect().top < innerHeight * .4) cur = sec.id; });
-  if (cur) { e.preventDefault(); location.href = a.getAttribute('href') + '#' + cur; }
-}));
 
 /* ---------- THEME ---------- */
 let STAR = '238,241,246', LINKA = .12;
@@ -798,6 +796,46 @@ $('#copy').addEventListener('click', async () => {
 readTheme();
 setLang(LANG);
 document.fonts && document.fonts.ready.then(fitTag);
+
+/* ---------- zen: one section per tab ---------- */
+(() => {
+  const ids = ['about', 'journey', 'how', 'kit', 'education', 'values', 'contact'];
+  const L = { en: ['About', 'Journey', 'How I work', 'Skills', 'Education', 'Values', 'Contact'],
+              sl: ['O meni', 'Pot', 'Kako delam', 'Veščine', 'Izobrazba', 'Vrednote', 'Kontakt'] };
+  const bar = $('#tabs .wrap'), ink = document.createElement('span'); ink.className = 'ink';
+  const btns = ids.map(id => {
+    const b = document.createElement('button');
+    b.setAttribute('role', 'tab'); b.id = 'tab-' + id; b.setAttribute('aria-controls', id);
+    b.addEventListener('click', () => show(id, true)); bar.append(b); return b;
+  });
+  bar.append(ink);
+  ids.forEach(id => { const p = $('#' + id); p.setAttribute('role', 'tabpanel'); p.setAttribute('aria-labelledby', 'tab-' + id); });
+  const label = () => btns.forEach((b, k) => b.textContent = L[LANG][k]);
+  function place() {
+    const b = btns.find(x => x.getAttribute('aria-selected') === 'true'); if (!b) return;
+    const pad = parseFloat(getComputedStyle(b).paddingLeft) || 0;
+    ink.style.left = b.offsetLeft + pad + 'px'; ink.style.width = b.offsetWidth - 2 * pad + 'px';
+  }
+  function show(id, user) {
+    if (!ids.includes(id)) id = 'about';
+    ids.forEach((x, k) => { const on = x === id; $('#' + x).classList.toggle('active', on); btns[k].setAttribute('aria-selected', on); btns[k].tabIndex = on ? 0 : -1; });
+    place();
+    if (user) {
+      history.replaceState(null, '', '#' + id);
+      const t = $('#tabs').offsetTop; if (scrollY > t) scrollTo({ top: t, behavior: RM ? 'auto' : 'smooth' });
+      btns[ids.indexOf(id)].scrollIntoView({ block: 'nearest', inline: 'center' });
+    }
+  }
+  bar.addEventListener('keydown', e => {
+    const k = btns.indexOf(document.activeElement); if (k < 0) return;
+    const n = { ArrowRight: (k + 1) % btns.length, ArrowLeft: (k - 1 + btns.length) % btns.length, Home: 0, End: btns.length - 1 }[e.key];
+    if (n === undefined) return; e.preventDefault(); btns[n].focus(); show(ids[n], true);
+  });
+  label(); onLang.push(() => { label(); requestAnimationFrame(place); });
+  addEventListener('resize', place);
+  show(location.hash.slice(1), false);
+  document.fonts && document.fonts.ready.then(place);
+})();
 onScroll();
 </script>
 </body>
