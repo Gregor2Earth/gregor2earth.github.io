@@ -139,6 +139,9 @@ nav a.on::after{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0
 #about .big .w{opacity:.12;transition:opacity .25s}
 #about .big .w.lit{opacity:1}
 #about .big .hl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue)}
+.edge{margin-top:52px;padding:4px 0 4px 26px;border-left:3px solid;border-image:linear-gradient(var(--green),var(--blue)) 1;font-size:clamp(22px,2.7vw,32px);font-weight:400;line-height:1.35;letter-spacing:-.01em;max-width:920px;opacity:0;transform:translateY(14px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1)}
+.edge.in{opacity:1;transform:none}
+.edge em{font-style:italic;font-weight:500;color:var(--green)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
 .stat{display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 8px}
 .stat .ring{position:relative;width:150px;height:150px;display:grid;place-items:center}
@@ -328,6 +331,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   .eyebrow{margin-bottom:4px}
   #about .big{font-size:12.5pt}
   #about .big .w{opacity:1}
+  .edge{opacity:1!important;transform:none!important;font-size:13pt;margin-top:12px}
   .stats{margin-top:12px;grid-template-columns:repeat(4,1fr)}
   .stat{padding:4px}.stat .ring{width:96px;height:96px}.stat b{font-size:20pt}.stat .u{font-size:7pt}.stat .lbl{font-size:8.5pt;margin-top:8px}.stat .arc{stroke-dashoffset:110!important;transition:none}
 
@@ -400,6 +404,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
   <div class="wrap">
     <div class="eyebrow" data-i18n="e1">01 — Manifesto</div>
     <p class="big" id="manifesto" data-i18n="manifesto">I create strategic, <span class="hl">user-centric</span> solutions that lift the overall user experience. I take ideas with a <span class="hl">purpose</span> and make them real — in turbulent, multi-stakeholder environments, with steady delivery, clear decisions, and a <span class="hl">UX-first</span> mindset. AI is my <span class="hl">co-pilot</span> — from the first idea to a working prototype to a shipped product.</p>
+    <p class="edge" data-i18n="edge">Where others see separate disciplines, I see <em>one system</em>: the service, the strategy, the technology and the people who use it.</p>
     <div class="stats"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ee6a0"/><stop offset="1" stop-color="#4da3ff"/></linearGradient></defs></svg>
       <div class="stat"><div class="ring"><svg viewBox="0 0 150 150" aria-hidden="true"><circle class="track" cx="75" cy="75" r="70"/><circle class="arc" cx="75" cy="75" r="70"/></svg><div><b data-count="12">0</b><span class="u" data-i18n="s1u">yrs</span></div></div><span class="lbl" data-i18n="s1">in travel, mobility &amp; user experience</span></div>
       <div class="stat"><div class="ring"><svg viewBox="0 0 150 150" aria-hidden="true"><circle class="track" cx="75" cy="75" r="70"/><circle class="arc" cx="75" cy="75" r="70"/></svg><div><b data-count="150">0</b><span class="u" data-i18n="s2u">vehicles</span></div></div><span class="lbl" data-i18n="s2">luxury fleet managed &amp; optimised</span></div>
@@ -676,7 +681,8 @@ const SL = {
  "bs3": "ODLETEL",
  "copy": "Kopiraj e-naslov",
  "pdf": "↓ Shrani kot PDF",
- "egg": "pst, vtipkajte <kbd>launch</kbd>"
+ "egg": "pst, vtipkajte <kbd>launch</kbd>",
+ "edge": "Kjer drugi vidijo ločena področja, jaz vidim <em>en sistem</em>: storitev, strategijo, tehnologijo in ljudi, ki jo uporabljajo."
 };
 const TXT = {
   en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', light: 'Light mode', dark: 'Dark mode',
@@ -831,6 +837,7 @@ io('[data-count]', el => {
 });
 io('.pass', el => el.classList.add('in'), .15);
 io('.stat', el => el.classList.add('in'), .4);
+io('.edge', el => el.classList.add('in'), .5);
 const numberChips = () => $$('.int-chips span').forEach((c, i) => c.style.setProperty('--i', i));
 numberChips(); onLang.push(numberChips);
 io('.interests', el => el.classList.add('in'), .3);
