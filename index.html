@@ -572,6 +572,7 @@ kbd{border:1px solid var(--line2);border-radius:4px;padding:1px 6px;color:var(--
       <button class="btn" id="copy" data-i18n="copy">Copy email</button>
       <a class="btn" href="https://www.linkedin.com/in/gregor-skok-9502214b/" target="_blank" rel="noopener">in · LinkedIn</a>
       <button class="btn" onclick="window.print()" data-i18n="pdf">↓ Save as PDF</button>
+      <button class="btn" id="saveHtml" data-i18n="html">↓ Save as HTML</button>
     </div>
   </div>
 </section>
@@ -682,14 +683,15 @@ const SL = {
  "copy": "Kopiraj e-naslov",
  "pdf": "↓ Shrani kot PDF",
  "egg": "pst, vtipkajte <kbd>launch</kbd>",
- "edge": "Kjer drugi vidijo ločena področja, jaz vidim <em>en sistem</em>: storitev, strategijo, tehnologijo in ljudi, ki jo uporabljajo."
+ "edge": "Kjer drugi vidijo ločena področja, jaz vidim <em>en sistem</em>: storitev, strategijo, tehnologijo in ljudi, ki jo uporabljajo.",
+ "html": "↓ Shrani kot HTML"
 };
 const TXT = {
-  en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', light: 'Light mode', dark: 'Dark mode',
+  en: { title: 'Gregor Skok — Product Creator', copied: '✓ Email copied — talk soon', lift: '🚀 Lift-off', saved: '✓ CV saved as HTML', light: 'Light mode', dark: 'Dark mode',
         rot: ['products people love', 'executable scope', 'clear decisions', 'better user experiences'],
         values: ['Family', 'Integrity', 'Growth', 'Development', 'Responsibility', 'Honesty', 'Compassion', 'Empathy', 'Adaptability', 'Flexibility'],
         board: ['USER EXPERIENCE', 'LUXURY MOBILITY', 'BUSINESS AVIATION'], next: ['YOUR TEAM', 'YOUR PRODUCT', 'YOUR NEXT LAUNCH'] },
-  sl: {"title":"Gregor Skok · Ustvarjalec produktov","copied":"✓ E-naslov je kopiran. Se kmalu slišimo!","lift":"🚀 Vzlet","light":"Svetli način","dark":"Temni način","rot":["produkte, ki jih ljudje vzljubijo","delujoče rešitve","jasne odločitve","boljšo izkušnjo uporabnikov"],"values":["Družina","Integriteta","Rast","Razvoj","Odgovornost","Iskrenost","Sočutje","Empatija","Prilagodljivost","Fleksibilnost"],"board":["IZKUŠNJA UPORABNIKOV","DOVRŠENA MOBILNOST","POSLOVNO LETALSTVO"],"next":["VAŠA EKIPA","VAŠ PRODUKT","VAŠA NASLEDNJA VIZIJA"]},
+  sl: {"title":"Gregor Skok · Ustvarjalec produktov","copied":"✓ E-naslov je kopiran. Se kmalu slišimo!","saved":"✓ Življenjepis je shranjen kot HTML","lift":"🚀 Vzlet","light":"Svetli način","dark":"Temni način","rot":["produkte, ki jih ljudje vzljubijo","delujoče rešitve","jasne odločitve","boljšo izkušnjo uporabnikov"],"values":["Družina","Integriteta","Rast","Razvoj","Odgovornost","Iskrenost","Sočutje","Empatija","Prilagodljivost","Fleksibilnost"],"board":["IZKUŠNJA UPORABNIKOV","DOVRŠENA MOBILNOST","POSLOVNO LETALSTVO"],"next":["VAŠA EKIPA","VAŠ PRODUKT","VAŠA NASLEDNJA VIZIJA"]},
 };
 const EN = {}; $$('[data-i18n]').forEach(el => EN[el.dataset.i18n] = el.innerHTML);
 let LANG = document.documentElement.lang === 'sl' ? 'sl' : 'en';
@@ -920,6 +922,23 @@ if (!RM) $$('.chip').forEach(ch => {
 
 /* ---------- copy email + toast ---------- */
 const toast = msg => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2200); };
+/* ---------- save as HTML: one self-contained file ---------- */
+$('#saveHtml').addEventListener('click', async () => {
+  let html;
+  try { const r = await fetch(location.pathname, { cache: 'no-store' }); if (!r.ok) throw 0; html = await r.text(); }
+  catch (e) { html = '<!doctype html>\n' + document.documentElement.outerHTML; }   // file:// fallback
+  try {
+    const blob = await (await fetch('photo.png')).blob();
+    const url = await new Promise((ok, no) => { const f = new FileReader(); f.onload = () => ok(f.result); f.onerror = no; f.readAsDataURL(blob); });
+    const needle = 'src="photo' + '.png"';   // built in two parts so this line is not rewritten too
+    html = html.split(needle).join('src="' + url + '"');
+  } catch (e) {}
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([html], { type: 'text/html' })); a.download = 'Gregor-Skok-CV.html';
+  document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast(T().saved);
+});
+
 $('#copy').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText('gregor.skok.mail@gmail.com'); toast(T().copied); }
   catch (e) { toast('gregor.skok.mail@gmail.com'); }
